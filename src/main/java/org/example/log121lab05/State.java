@@ -8,11 +8,13 @@ import java.util.ArrayList;
 public class State implements Serializable
 {
     private static State currentState = null;
+    private int activePerspectiveIndex;
     private ArrayList<Perspective> perspectives = new ArrayList<>();
     private Image image = null;
 
     public State(Perspective persp1, Perspective persp2, Image image)
     {
+        this.activePerspectiveIndex = 0;
         this.perspectives.add(persp1);
         this.perspectives.add(persp2);
         this.image = image;
@@ -35,10 +37,19 @@ public class State implements Serializable
         return currentState;
     }
 
+    public void setActivePerspectiveIndex(int index) {
+        if (index >= 0 && index < perspectives.size()) {
+            this.activePerspectiveIndex = index;
+        }
+    }
+    public Perspective getActivePerspective() {
+        return perspectives.get(activePerspectiveIndex);
+    }
+
     @Serial
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
-        // Serialize image as PNG since BufferedImage isnt serializable
+        // Serialize image as PNG since BufferedImage isn't serializable
         if (image != null) {
             ImageIO.write(image.getImage(), "png", out);
         }

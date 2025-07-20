@@ -23,7 +23,7 @@ public class Perspective implements IObservable
         //setParams();
         notifyObservators();
     }
-    public void deplacer(int deltaX, int deltaY)
+    public void translate(int deltaX, int deltaY)
     {
         if(deltaY + pointUL.getY() <= 0)
         {
@@ -54,6 +54,14 @@ public class Perspective implements IObservable
             pointDR.x += deltaX;
         }
         notifyObservators();
+    }
+    public Point[] copie()
+    {
+        return getParams();
+    }
+    public void paste(Point[] pasteBoard)
+    {
+        setParams(pasteBoard[0],pasteBoard[1]);
     }
 
     public void setParams(Point pUL, Point pDR)

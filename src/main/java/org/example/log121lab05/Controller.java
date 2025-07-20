@@ -2,13 +2,14 @@ package org.example.log121lab05;
 
 import javafx.fxml.FXML;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller extends Observator
 {
     private static Controller c = null;
-
+    private Point[] pasteBoard = new Point[2];
     private List<Memento> snapshots = new ArrayList<>();
     private List<Memento> redoshots = new ArrayList<>();
 
@@ -55,5 +56,14 @@ public class Controller extends Observator
             return nextStateMeme.getState();
         }
         return null;
+    }
+
+    public Point[] getPasteBoard()
+    {
+        return pasteBoard;
+    }
+    public void setPasteBoard(Point[] p)
+    {
+        pasteBoard = p;
     }
 }
