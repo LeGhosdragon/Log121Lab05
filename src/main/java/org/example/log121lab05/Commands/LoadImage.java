@@ -18,6 +18,6 @@ public class LoadImage implements ICommand
     public void execute()
     {
         FileHandler fh = FileHandler.getInstance();
-        state.getImage().setImage(fh.loadImage(state));
+        state.getImage().setImage(fh.loadImage());
     }
 }

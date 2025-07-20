@@ -18,7 +18,7 @@ public class Perspective implements IObservable
     // the amount of scrolling.
     // PS: Scroll-in = (Point)-scroll*DeltaDist and Scroll-out = (Point)sroll*DeltaDist
     //TODO:FINISH ZOOM USING WHAT IS DESCRIBED ABOVE
-    public void zoom(int amount, Point mouseCoords)
+    public void zoom(int scrollAmt, Point mouseCoords)
     {
         //setParams();
         notifyObservators();
@@ -88,8 +88,8 @@ public class Perspective implements IObservable
         Observators.remove(obs);
     }
 
-    @Override
-    public void notifyObservators()
+
+    private void notifyObservators()
     {
         for (Observator obs: Observators)
         {

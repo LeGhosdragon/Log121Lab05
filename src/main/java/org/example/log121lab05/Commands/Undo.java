@@ -20,7 +20,7 @@ public class Undo implements ICommand
         State newState = Controller.getInstance().getPreviousState();
         if(newState != null)
         {
-           state.setState(newState);
+            state.setState(newState);
         }
     }
 }

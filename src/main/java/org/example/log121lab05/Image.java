@@ -56,8 +56,8 @@ public class Image implements IObservable
         Observators.remove(obs);
     }
 
-    @Override
-    public void notifyObservators()
+
+    private void notifyObservators()
     {
         for (Observator obs: Observators)
         {

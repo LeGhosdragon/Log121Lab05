@@ -91,7 +91,7 @@ public class FileHandler
     }
 
 
-    public BufferedImage loadImage(State state) {
+    public BufferedImage loadImage() {
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(null);
 
