@@ -24,7 +24,7 @@ public class Controller extends Observator
         return c;
     }
 
-
+    //Ceci existe ensemble pour vous donner un exemple de comment ça marche en relation avec le FXML
     @FXML
     protected void onHelloButtonClick()
     {
