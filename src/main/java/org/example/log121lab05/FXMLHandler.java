@@ -1,25 +1,17 @@
 package org.example.log121lab05;
 
-
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
+
+import javax.sound.sampled.Control;
 
 public class FXMLHandler
 {
     private static FXMLHandler h = null;
 
-    @FXML
-    private ImageView imageView1;
-    @FXML
-    private ImageView imageView2;
-    @FXML
-    private ImageView imageView3;
-
-    private FXMLHandler()
-    {
-        h = this;
-    }
+    private FXMLHandler() {}
 
     public static synchronized FXMLHandler getInstance()
     {
@@ -45,11 +37,11 @@ public class FXMLHandler
     }
     public void update(Image obs)
     {
-        // todo: figure this out
         Platform.runLater(() -> {
-            imageView1.setImage(SwingFXUtils.toFXImage(img1, null));
-            imageView2.setImage(SwingFXUtils.toFXImage(img2, null));
-            imageView3.setImage(SwingFXUtils.toFXImage(img3, null));
+            javafx.scene.image.Image img = SwingFXUtils.toFXImage(obs.getImage(), null);
+            for(ImageView view : Controller.getInstance().getImageViews()){
+                view.setImage(img);
+            }
         });
     }
 }

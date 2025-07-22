@@ -2,9 +2,11 @@ package org.example.log121lab05;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import org.example.log121lab05.Commands.LoadImage;
 
 import java.awt.*;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,13 @@ public class Controller extends Observator
     private Point[] pasteBoard = new Point[2];
     private List<Memento> snapshots = new ArrayList<>();
     private List<Memento> redoshots = new ArrayList<>();
+
+    @FXML
+    private ImageView imageView1;
+    @FXML
+    private ImageView imageView2;
+    @FXML
+    private ImageView imageView3;
 
     private Controller() {}
 
@@ -81,5 +90,9 @@ public class Controller extends Observator
     public void setPasteBoard(Point[] p)
     {
         pasteBoard = p;
+    }
+
+    public ImageView[] getImageViews(){
+        return new ImageView[]{imageView1, imageView2, imageView3};
     }
 }
