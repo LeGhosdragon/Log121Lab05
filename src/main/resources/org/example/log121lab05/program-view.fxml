@@ -42,17 +42,21 @@
             <StackPane HBox.hgrow="ALWAYS"
                        style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
                 <ImageView fx:id="imageView1"
-                           preserveRatio="true" />
+                           preserveRatio="true"/>
             </StackPane>
             <StackPane HBox.hgrow="ALWAYS"
                        style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
                 <ImageView fx:id="imageView2"
-                           preserveRatio="true" />
+                           preserveRatio="true"
+                           onMousePressed="#onImage1Pressed"
+                           onMouseDragged="#onImageDragged"/>
             </StackPane>
             <StackPane HBox.hgrow="ALWAYS"
                        style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
                 <ImageView fx:id="imageView3"
-                           preserveRatio="true" />
+                           preserveRatio="true"
+                           onMousePressed="#onImage2Pressed"
+                           onMouseDragged="#onImageDragged"/>
             </StackPane>
         </HBox>
     </center>

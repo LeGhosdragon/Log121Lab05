@@ -35,13 +35,13 @@ public class State implements Serializable
         return currentState;
     }
 
-    public void setActivePerspectiveIndex(int index) {
-        if (index >= 0 && index < perspectives.size()) {
-            this.activePerspectiveIndex = index;
+    static public void setActivePerspectiveIndex(int index) {
+        if (index >= 0 && index < currentState.perspectives.size()) {
+            currentState.activePerspectiveIndex = index;
         }
     }
-    public Perspective getActivePerspective() {
-        return perspectives.get(activePerspectiveIndex);
+    static public Perspective getActivePerspective() {
+        return currentState.perspectives.get(currentState.activePerspectiveIndex);
     }
 
     @Serial

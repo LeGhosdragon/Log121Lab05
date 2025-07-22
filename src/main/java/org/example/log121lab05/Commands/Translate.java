@@ -6,19 +6,18 @@ import org.example.log121lab05.State;
 
 public class Translate implements ICommand
 {
+    private int deltaX;
+    private int deltaY;
 
-    private State state = null;
-
-    public Translate(State state)
+    public Translate(int deltaX, int deltaY)
     {
-        this.state = state;
+        this.deltaX = deltaX;
+        this.deltaY = deltaY;
     }
 
     @Override
     public void execute() {
-        Perspective active = state.getActivePerspective();
-
-                //Listener sur le delta du dragging de la souris * deltaTemps (pour un smooth dragging)
-//        active.translate((int)deltaX,(int)deltaY);
+        Perspective active = State.getActivePerspective();
+        active.translate(deltaX, deltaY);
     }
 }

@@ -2,11 +2,16 @@ package org.example.log121lab05;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ScrollEvent;
 import org.example.log121lab05.Commands.LoadImage;
+import org.example.log121lab05.Commands.Translate;
+import org.example.log121lab05.Commands.Zoom;
 
 import java.awt.*;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +23,20 @@ public class Controller extends Observator
     private List<Memento> redoshots = new ArrayList<>();
 
     @FXML
-    private ImageView imageView1;
+    private ImageView imageView1 = new ImageView();
     @FXML
-    private ImageView imageView2;
+    private ImageView imageView2 = new ImageView();
     @FXML
-    private ImageView imageView3;
+    private ImageView imageView3 = new ImageView();
 
-    private Controller() {}
+    // mouse drag data
+    private double clickX;
+    private double clickY;
+
+    private Controller() {
+        imageView2.setOnScroll(this::onScroll);
+        imageView3.setOnScroll(this::onScroll);
+    }
 
     public static synchronized Controller getInstance()
     {
@@ -33,7 +45,11 @@ public class Controller extends Observator
         return c;
     }
 
-    //Ceci existe ensemble pour vous donner un exemple de comment ça marche en relation avec le FXML
+    private void saveMemento(){
+        Memento m = new Memento(State.getState());
+        snapshots.add(m);
+    }
+
     @FXML
     protected void onHelloButtonClick()
     {
@@ -42,9 +58,7 @@ public class Controller extends Observator
 
     @FXML
     protected void onLoadImageButtonClick(){
-        Memento m = new Memento(State.getState());
-        snapshots.add(m);
-
+        saveMemento();
         LoadImage cmd = new LoadImage();
         cmd.execute();
     }
@@ -52,6 +66,48 @@ public class Controller extends Observator
     @FXML
     protected void onQuitButtonClick(){
         Platform.exit();
+    }
+
+    @FXML
+    protected void onImage1Pressed(){
+        State.setActivePerspectiveIndex(0);
+        Point mousePoint = MouseInfo.getPointerInfo().getLocation();
+        clickX = mousePoint.x;
+        clickY = mousePoint.y;
+    }
+
+    @FXML
+    protected void onImage2Pressed(){
+        State.setActivePerspectiveIndex(1);
+        Point mousePoint = MouseInfo.getPointerInfo().getLocation();
+        clickX = mousePoint.x;
+        clickY = mousePoint.y;
+    }
+
+    @FXML
+    protected void onImageDragged(){
+        saveMemento();
+        Point mousePoint = MouseInfo.getPointerInfo().getLocation();
+        Translate cmd = new Translate((int)(mousePoint.x - clickX), (int)(mousePoint.y - clickY));
+        cmd.execute();
+    }
+
+    private void onScroll(ScrollEvent e){
+        saveMemento();
+
+        double zoomFactor = 1.05;
+        if (e.getDeltaY() < 0) {
+            zoomFactor = 1 / zoomFactor; // Zoom out
+        }
+
+        Zoom cmd = new Zoom(new Point(0, 0), zoomFactor);
+        cmd.execute();
+    }
+
+    @FXML
+    protected void onImageZoom(){
+        saveMemento();
+        Point mousePoint = MouseInfo.getPointerInfo().getLocation();
     }
 
     @Override
