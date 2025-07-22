@@ -5,12 +5,12 @@ import org.example.log121lab05.ICommand;
 import org.example.log121lab05.Perspective;
 import org.example.log121lab05.State;
 
-public class Copie implements ICommand
+public class Copy implements ICommand
 {
 
     private State state = null;
 
-    public Copie(State state)
+    public Copy(State state)
     {
         this.state = state;
     }

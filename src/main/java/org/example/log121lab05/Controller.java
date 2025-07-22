@@ -1,6 +1,8 @@
 package org.example.log121lab05;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import org.example.log121lab05.Commands.LoadImage;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,10 +15,7 @@ public class Controller extends Observator
     private List<Memento> snapshots = new ArrayList<>();
     private List<Memento> redoshots = new ArrayList<>();
 
-    private Controller()
-    {
-        c = this;
-    }
+    private Controller() {}
 
     public static synchronized Controller getInstance()
     {
@@ -29,8 +28,23 @@ public class Controller extends Observator
     @FXML
     protected void onHelloButtonClick()
     {
-        //welcomeText.setText("Welcome to JavaFX Application!");
+        System.out.println("Button pressed");
     }
+
+    @FXML
+    protected void onLoadImageButtonClick(){
+        Memento m = new Memento(State.getState());
+        snapshots.add(m);
+
+        LoadImage cmd = new LoadImage();
+        cmd.execute();
+    }
+
+    @FXML
+    protected void onQuitButtonClick(){
+        Platform.exit();
+    }
+
     @Override
     public void update(IObservable obs)
     {
@@ -42,6 +56,7 @@ public class Controller extends Observator
         if(!snapshots.isEmpty())
         {
             Memento previousStateMeme = snapshots.get(snapshots.size() - 1);
+            snapshots.remove(snapshots.size() - 1);
             redoshots.add(previousStateMeme);
             return previousStateMeme.getState();
         }
@@ -52,6 +67,7 @@ public class Controller extends Observator
         if(!redoshots.isEmpty())
         {
             Memento nextStateMeme = redoshots.get(redoshots.size() - 1);
+            redoshots.remove(redoshots.size() - 1);
             snapshots.add(nextStateMeme);
             return nextStateMeme.getState();
         }

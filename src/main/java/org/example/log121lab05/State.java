@@ -7,20 +7,18 @@ import java.util.ArrayList;
 
 public class State implements Serializable
 {
-    private static State currentState = null;
+    private static State currentState = new State();
     private int activePerspectiveIndex;
     private ArrayList<Perspective> perspectives = new ArrayList<>();
     private Image image = null;
 
-    public State(Perspective persp1, Perspective persp2, Image image)
-    {
-        this.activePerspectiveIndex = 0;
-        this.perspectives.add(persp1);
-        this.perspectives.add(persp2);
-        this.image = image;
+    public State() {
+        perspectives.add(new Perspective());
+        perspectives.add(new Perspective());
+        image = null;
     }
 
-    public void setState(State state)
+    static public void setState(State state)
     {
         for (int i = 0; i < currentState.perspectives.size(); i++)
         {
@@ -32,7 +30,7 @@ public class State implements Serializable
         currentState.image.setImage(state.image.getImage());
     }
 
-    public State getState()
+    static public State getState()
     {
         return currentState;
     }

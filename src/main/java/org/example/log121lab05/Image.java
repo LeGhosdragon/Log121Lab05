@@ -12,7 +12,7 @@ public class Image implements IObservable
 
     private Image()
     {
-        i = this;
+        addObservator(Controller.getInstance());
     }
 
     public static synchronized Image getInstance()

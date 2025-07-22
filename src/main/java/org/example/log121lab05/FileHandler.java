@@ -100,7 +100,6 @@ public class FileHandler
             try {
                 BufferedImage img = ImageIO.read(selectedFile);
                 if (img != null) {
-
                     return img;
                 } else {
                     System.out.println("The selected file is not a valid image.");
