@@ -8,18 +8,19 @@ import java.awt.*;
 
 public class Zoom implements ICommand
 {
-    private Point mousePos;
-    private int factor;
-
-    public Zoom(Point mousePos, int factor)
+    private double factor;
+    private State state;
+    private Point mouseCoords;
+    public Zoom(State state, double factor, Point location)
     {
-        this.mousePos = mousePos;
+        this.state = state;
         this.factor = factor;
+        this.mouseCoords = location;
     }
 
     @Override
     public void execute() {
-        Perspective active = State.getActivePerspective();
-        active.zoom(factor, mousePos);
+        Perspective active = state.getActivePerspective();
+        active.zoom(factor, mouseCoords);
     }
 }

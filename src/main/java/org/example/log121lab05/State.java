@@ -13,12 +13,15 @@ public class State implements Serializable
     private Image image = null;
 
     public State() {
-        perspectives.add(new Perspective());
-        perspectives.add(new Perspective());
+        perspectives.add(new Perspective(0));
+        perspectives.add(new Perspective(1));
+        for (Perspective perspective : perspectives) {
+            perspective.addObservator(Controller.getInstance());
+        }
         image = null;
     }
 
-    static public void setState(State state)
+    public void setState(State state)
     {
         for (int i = 0; i < currentState.perspectives.size(); i++)
         {
@@ -35,12 +38,15 @@ public class State implements Serializable
         return currentState;
     }
 
-    static public void setActivePerspectiveIndex(int index) {
+    public void setActivePerspectiveIndex(int index) {
         if (index >= 0 && index < currentState.perspectives.size()) {
             currentState.activePerspectiveIndex = index;
         }
     }
-    static public Perspective getActivePerspective() {
+    public int getActivePerspectiveIndex() {
+        return  currentState.activePerspectiveIndex;
+    }
+    public Perspective getActivePerspective() {
         return currentState.perspectives.get(currentState.activePerspectiveIndex);
     }
 

@@ -39,25 +39,42 @@
     </top>
     <center>
         <HBox spacing="10" style="-fx-background-color: #e6e6e6; -fx-padding: 10;">
-            <StackPane HBox.hgrow="ALWAYS"
+            <StackPane prefWidth="413" prefHeight="600"
+                       minWidth="413" maxWidth="413"
+                       minHeight="600" maxHeight="600"
                        style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
                 <ImageView fx:id="imageView1"
-                           preserveRatio="true"/>
-            </StackPane>
-            <StackPane HBox.hgrow="ALWAYS"
-                       style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
-                <ImageView fx:id="imageView2"
+                           fitWidth="413"
+                           fitHeight="600"
                            preserveRatio="true"
+                           smooth="true" />
+            </StackPane>
+            <StackPane fx:id="pane1" prefWidth="413" prefHeight="600"
+                       minWidth="413" maxWidth="413"
+                       minHeight="600" maxHeight="600"
+                       style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);"
+                       onMousePressed="#onImage1Pressed">
+                <ImageView fx:id="imageView2"
+                           fitWidth="413"
+                           fitHeight="600"
+                           preserveRatio="true"
+                           smooth="true"
                            onMousePressed="#onImage1Pressed"
                            onMouseDragged="#onImageDragged"/>
             </StackPane>
-            <StackPane HBox.hgrow="ALWAYS"
+            <StackPane fx:id="pane2" prefWidth="413" prefHeight="600"
+                       minWidth="413" maxWidth="413"
+                       minHeight="600" maxHeight="600"
                        style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
                 <ImageView fx:id="imageView3"
+                           fitWidth="413"
+                           fitHeight="600"
                            preserveRatio="true"
+                           smooth="true"
                            onMousePressed="#onImage2Pressed"
                            onMouseDragged="#onImageDragged"/>
             </StackPane>
+
         </HBox>
     </center>
     <bottom>

@@ -5,60 +5,91 @@ import java.awt.*;
 public class Perspective implements IObservable
 {
     private Point pointUL = new Point(0,0);
-    private Point pointDR = new Point(0,0);//TODO Ajuster les params du point inferieur droit pour qu'ils suivent le rapport de grandeur de l'image HeightXWidth
+    private Point pointDR = new Point(512,512);
+    private double zoomLevel = 1.0;
+    private int viewIndex;
 
-
-    //TODO: Si on fait que ce soit des booleans en output on peux implémenter la logique de if on fail dont do X, c'est à vous de décider - Simon
-//    public boolean zoom(int amount)
-//    {
-//
-//    }
-
-    // Il faut set les nouveaux points based on the diff between the distance from cursor to each point times
-    // the amount of scrolling.
-    // PS: Scroll-in = (Point)-scroll*DeltaDist and Scroll-out = (Point)sroll*DeltaDist
-    //TODO:FINISH ZOOM USING WHAT IS DESCRIBED ABOVE
-    public void zoom(int scrollAmt, Point mouseCoords)
+    public Perspective(int index)
     {
-        //setParams();
+        viewIndex = index;
+    }
+
+    public void zoom(double zoomFactor, Point zoomCenter) {
+        zoomLevel = zoomLevel * zoomFactor;
+
+        int width = pointDR.x - pointUL.x;
+        int height = pointDR.y - pointUL.y;
+
+        // New width/height after zoom
+        int newWidth = (int)(width / zoomFactor);
+        int newHeight = (int)(height / zoomFactor);
+
+        double ratioX = (zoomCenter.x - pointUL.x) / (double) width;
+        double ratioY = (zoomCenter.y - pointUL.y) / (double) height;
+
+        int newULx = zoomCenter.x - (int)(newWidth * ratioX);
+        int newULy = zoomCenter.y - (int)(newHeight * ratioY);
+        int newDRx = newULx + newWidth;
+        int newDRy = newULy + newHeight;
+
+        pointUL = new Point(newULx, newULy);
+        pointDR = new Point(newDRx, newDRy);
+
         notifyObservators();
     }
-    public void translate(int deltaX, int deltaY)
+
+
+    public double getZoomLevel() {
+        return zoomLevel;
+    }
+
+
+    public int getViewIndex()
     {
-        if(deltaY + pointUL.getY() <= 0)
-        {
-            pointUL.y = 0;
+        return viewIndex;
+    }
+
+    public void translate(double deltaX, double deltaY) {
+        int newULx = pointUL.x - (int) deltaX;
+        int newULy = pointUL.y - (int) deltaY;
+        int newDRx = pointDR.x - (int) deltaX;
+        int newDRy = pointDR.y - (int) deltaY;
+
+        int imgWidth = Image.getInstance().getImageWidth();
+        int imgHeight = Image.getInstance().getImageHeight();
+
+
+        int viewportWidth = pointDR.x - pointUL.x;
+        int viewportHeight = pointDR.y - pointUL.y;
+
+
+        if (newULx < 0) {
+            newULx = 0;
+            newDRx = viewportWidth;
+        } else if (newDRx > imgWidth) {
+            newDRx = imgWidth;
+            newULx = imgWidth - viewportWidth;
         }
-        else {
-            pointUL.y += deltaY;
+
+        if (newULy < 0) {
+            newULy = 0;
+            newDRy = viewportHeight;
+        } else if (newDRy > imgHeight) {
+            newDRy = imgHeight;
+            newULy = imgHeight - viewportHeight;
         }
-        if(deltaX + pointUL.getX() <= 0)
-        {
-            pointUL.x = 0;
-        }
-        else {
-            pointUL.x += deltaX;
-        }
-        if(deltaY + pointDR.getY() >= Image.getInstance().getImageHeight())
-        {
-            pointDR.y = Image.getInstance().getImageHeight();
-        }
-        else {
-            pointDR.y += deltaY;
-        }
-        if(deltaX + pointDR.getX() >= Image.getInstance().getImageWidth())
-        {
-            pointDR.x = Image.getInstance().getImageWidth();
-        }
-        else {
-            pointDR.x += deltaX;
-        }
+
+        pointUL = new Point(newULx, newULy);
+        pointDR = new Point(newDRx, newDRy);
+
         notifyObservators();
     }
+
     public Point[] copie()
     {
         return getParams();
     }
+
     public void paste(Point[] pasteBoard)
     {
         setParams(pasteBoard[0],pasteBoard[1]);

@@ -20,7 +20,7 @@ public class Redo implements ICommand
         State newState = Controller.getInstance().getNextState();
         if(newState != null)
         {
-            State.setState(newState);
+            state.setState(newState);
         }
     }
 }

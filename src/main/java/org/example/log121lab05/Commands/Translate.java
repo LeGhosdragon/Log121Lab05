@@ -6,18 +6,21 @@ import org.example.log121lab05.State;
 
 public class Translate implements ICommand
 {
-    private int deltaX;
-    private int deltaY;
+    private double deltaX;
+    private double deltaY;
+    private State state = null;
 
-    public Translate(int deltaX, int deltaY)
+
+    public Translate(State state,double deltaX, double deltaY)
     {
+        this.state = state;
         this.deltaX = deltaX;
         this.deltaY = deltaY;
     }
 
     @Override
     public void execute() {
-        Perspective active = State.getActivePerspective();
+        Perspective active = state.getActivePerspective();
         active.translate(deltaX, deltaY);
     }
 }

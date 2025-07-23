@@ -5,6 +5,7 @@ import org.example.log121lab05.ICommand;
 import org.example.log121lab05.Image;
 import org.example.log121lab05.State;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class LoadImage implements ICommand

@@ -6,12 +6,15 @@ import org.example.log121lab05.State;
 
 public class Load implements ICommand
 {
-    public Load() {}
+    State state = null;
+    public Load(State state) {
+        this.state = state;
+    }
 
     @Override
     public void execute()
     {
         FileHandler fh = FileHandler.getInstance();
-        State.setState(fh.load());
+        state.setState(fh.load());
     }
 }
