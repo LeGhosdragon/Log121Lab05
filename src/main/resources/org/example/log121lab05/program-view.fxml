@@ -1,78 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <HBox spacing="10" style="-fx-padding: 5; -fx-background-color: #f0f0f0;">
             <MenuButton text="Fichier">
                 <items>
-                    <MenuItem text="Sauvegarder perspective" disable="true" onAction="#onHelloButtonClick"/>
-                    <MenuItem text="Charger perspective" disable="true" onAction="#onHelloButtonClick"/>
-                    <MenuItem text="Charger image" onAction="#onLoadImageButtonClick"/>
-                    <MenuItem text="Quitter" onAction="#onQuitButtonClick"/>
+                    <MenuItem disable="true" onAction="#onHelloButtonClick" text="Sauvegarder perspective" />
+                    <MenuItem disable="true" onAction="#onHelloButtonClick" text="Charger perspective" />
+                    <MenuItem onAction="#onLoadImageButtonClick" text="Charger image" />
+                    <MenuItem onAction="#onQuitButtonClick" text="Quitter" />
                 </items>
             </MenuButton>
             <MenuButton text="Édition">
                 <items>
-                    <MenuItem text="Défaire" onAction="#onHelloButtonClick"/>
-                    <MenuItem text="Refaire" onAction="#onHelloButtonClick"/>
+                    <MenuItem onAction="#onHelloButtonClick" text="Défaire" />
+                    <MenuItem onAction="#onHelloButtonClick" text="Refaire" />
                 </items>
             </MenuButton>
             <MenuButton text="Presse-Papier">
                 <items>
-                    <MenuItem text="Copier position" onAction="#onHelloButtonClick"/>
-                    <MenuItem text="Coller position" onAction="#onHelloButtonClick"/>
-                    <MenuItem text="Copier zoom" onAction="#onHelloButtonClick"/>
-                    <MenuItem text="Coller zoom" onAction="#onHelloButtonClick"/>
-                    <MenuItem text="Copier tout" onAction="#onHelloButtonClick"/>
-                    <MenuItem text="Coller tout" onAction="#onHelloButtonClick"/>
+                    <MenuItem onAction="#onHelloButtonClick" text="Copier position" />
+                    <MenuItem onAction="#onHelloButtonClick" text="Coller position" />
+                    <MenuItem onAction="#onHelloButtonClick" text="Copier zoom" />
+                    <MenuItem onAction="#onHelloButtonClick" text="Coller zoom" />
+                    <MenuItem onAction="#onHelloButtonClick" text="Copier tout" />
+                    <MenuItem onAction="#onHelloButtonClick" text="Coller tout" />
                 </items>
             </MenuButton>
         </HBox>
     </top>
     <center>
         <HBox spacing="10" style="-fx-background-color: #e6e6e6; -fx-padding: 10;">
-            <StackPane prefWidth="413" prefHeight="600"
-                       minWidth="413" maxWidth="413"
-                       minHeight="600" maxHeight="600"
-                       style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
-                <ImageView fx:id="imageView1"
-                           fitWidth="413"
-                           fitHeight="600"
-                           preserveRatio="true"
-                           smooth="true" />
+            <StackPane maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" prefHeight="600" prefWidth="413" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
+                <ImageView fx:id="imageView1" fitHeight="600" fitWidth="413" preserveRatio="true" smooth="true" />
             </StackPane>
-            <StackPane fx:id="pane1" prefWidth="413" prefHeight="600"
-                       minWidth="413" maxWidth="413"
-                       minHeight="600" maxHeight="600"
-                       style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);"
-                       onMousePressed="#onImage1Pressed">
-                <ImageView fx:id="imageView2"
-                           fitWidth="413"
-                           fitHeight="600"
-                           preserveRatio="true"
-                           smooth="true"
-                           onMousePressed="#onImage1Pressed"
-                           onMouseDragged="#onImageDragged"/>
+            <StackPane fx:id="pane1" maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" onContextMenuRequested="#contextMenu" onMousePressed="#onImage1Pressed" prefHeight="600" prefWidth="413" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
+                <ImageView fx:id="imageView2" fitHeight="600" fitWidth="413" onMouseDragged="#onImageDragged" onMousePressed="#onImage1Pressed" preserveRatio="true" smooth="true">
+
+                </ImageView>
             </StackPane>
-            <StackPane fx:id="pane2" prefWidth="413" prefHeight="600"
-                       minWidth="413" maxWidth="413"
-                       minHeight="600" maxHeight="600"
-                       style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
-                <ImageView fx:id="imageView3"
-                           fitWidth="413"
-                           fitHeight="600"
-                           preserveRatio="true"
-                           smooth="true"
-                           onMousePressed="#onImage2Pressed"
-                           onMouseDragged="#onImageDragged"/>
+            <StackPane fx:id="pane2" maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" prefHeight="600" prefWidth="413" onContextMenuRequested="#contextMenu" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
+                <ImageView fx:id="imageView3" fitHeight="600" fitWidth="413" onMouseDragged="#onImageDragged" onMousePressed="#onImage2Pressed"  preserveRatio="true" smooth="true" />
             </StackPane>
 
         </HBox>

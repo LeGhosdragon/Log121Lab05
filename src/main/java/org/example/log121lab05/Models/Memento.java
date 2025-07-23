@@ -3,7 +3,7 @@ package org.example.log121lab05.Models;
 public class Memento
 {
     private State state = null;
-    Memento(State state)
+    public Memento(State state)
     {
         this.state = state;
     }

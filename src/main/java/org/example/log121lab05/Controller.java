@@ -1,25 +1,30 @@
 package org.example.log121lab05;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.StackPane;
-import org.example.log121lab05.Models.Commands.LoadImage;
-import org.example.log121lab05.Models.Commands.Translate;
-import org.example.log121lab05.Models.Commands.Zoom;
+import org.example.log121lab05.Models.Commands.*;
 import javafx.scene.input.MouseEvent;
 import org.example.log121lab05.Models.Memento;
 import org.example.log121lab05.Models.Perspective;
 import org.example.log121lab05.Models.State;
 
 import java.awt.*;
-
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class Controller extends Observator
-{
+public class Controller extends Observator implements Initializable {
     private static Controller c = null;
     private Point[] pasteBoard = new Point[2];
     private final List<Memento> snapshots = new ArrayList<>();
@@ -38,41 +43,36 @@ public class Controller extends Observator
     @FXML
     private ImageView imageView3;
 
-    private Controller() {}
-    @FXML
-    public void initialize() {
-        pane1.setOnScroll(this::onScroll);
-        pane2.setOnScroll(this::onScroll);
-        currentState = new State();
+    private ContextMenu contextMenu;
+
+    private Controller() {
     }
 
-    public static synchronized Controller getInstance()
-    {
+    public static synchronized Controller getInstance() {
         if (c == null)
             c = new Controller();
         return c;
     }
 
-    private void saveMemento(){
+    private void saveMemento() {
         Memento m = new Memento(currentState);
         snapshots.add(m);
     }
 
     @FXML
-    protected void onHelloButtonClick()
-    {
+    protected void onHelloButtonClick() {
         System.out.println("Button pressed");
     }
 
     @FXML
-    protected void onLoadImageButtonClick(){
+    protected void onLoadImageButtonClick() {
         saveMemento();
         LoadImage cmd = new LoadImage();
         cmd.execute();
     }
 
     @FXML
-    protected void onQuitButtonClick(){
+    protected void onQuitButtonClick() {
         Platform.exit();
     }
 
@@ -85,7 +85,7 @@ public class Controller extends Observator
 
 
     @FXML
-    protected void onImage2Pressed(MouseEvent event){
+    protected void onImage2Pressed(MouseEvent event) {
         currentState.setActivePerspectiveIndex(1);
         clickSceneX = event.getSceneX();
         clickSceneY = event.getSceneY();
@@ -117,7 +117,6 @@ public class Controller extends Observator
         clickSceneX = event.getSceneX();
         clickSceneY = event.getSceneY();
     }
-
 
 
     private void onScroll(ScrollEvent e) {
@@ -170,16 +169,14 @@ public class Controller extends Observator
         Zoom cmd = new Zoom(currentState, zoomFactor, zoomCenter);
         cmd.execute();
     }
+
     @Override
-    public void update(IObservable obs)
-    {
+    public void update(IObservable obs) {
         FXMLHandler.getInstance().update(obs);
     }
 
-    public State getPreviousState()
-    {
-        if(!snapshots.isEmpty())
-        {
+    public State getPreviousState() {
+        if (!snapshots.isEmpty()) {
             Memento previousStateMeme = snapshots.get(snapshots.size() - 1);
             snapshots.remove(snapshots.size() - 1);
             redoshots.add(previousStateMeme);
@@ -187,10 +184,9 @@ public class Controller extends Observator
         }
         return null;
     }
-    public State getNextState()
-    {
-        if(!redoshots.isEmpty())
-        {
+
+    public State getNextState() {
+        if (!redoshots.isEmpty()) {
             Memento nextStateMeme = redoshots.get(redoshots.size() - 1);
             redoshots.remove(redoshots.size() - 1);
             snapshots.add(nextStateMeme);
@@ -199,16 +195,51 @@ public class Controller extends Observator
         return null;
     }
 
-    public Point[] getPasteBoard()
-    {
+    public Point[] getPasteBoard() {
         return pasteBoard;
     }
-    public void setPasteBoard(Point[] p)
-    {
+
+    public void setPasteBoard(Point[] p) {
         pasteBoard = p;
     }
 
-    public ImageView[] getImageViews(){
+    public ImageView[] getImageViews() {
         return new ImageView[]{imageView1, imageView2, imageView3};
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        pane1.setOnScroll(this::onScroll);
+        pane2.setOnScroll(this::onScroll);
+        currentState = new State();
+
+        // context menu stuff
+        MenuItem item1 = new MenuItem("Copy");
+        MenuItem item2 = new MenuItem("Paste");
+        contextMenu = new ContextMenu();
+
+        contextMenu.getItems().addAll(item1, item2);
+
+        item1.setOnAction(actionEvent -> {
+            saveMemento();
+            Copy copy = new Copy(currentState);
+            copy.execute();
+        });
+
+        item2.setOnAction(actionEvent -> {
+            saveMemento();
+            Paste paste = new Paste(currentState);
+            paste.execute();
+        });
+
+    }
+
+    public void contextMenu(Event e) {
+        if (e instanceof ContextMenuEvent) {
+            // TODO fix the position of the context menu
+            contextMenu.show(imageView2, ((ContextMenuEvent) e).getSceneX(), ((ContextMenuEvent) e).getSceneY());
+        }
+
+    }
+
 }
