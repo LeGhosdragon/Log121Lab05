@@ -9,16 +9,16 @@
         <HBox spacing="10" style="-fx-padding: 5; -fx-background-color: #f0f0f0;">
             <MenuButton text="Fichier">
                 <items>
-                    <MenuItem disable="true" onAction="#onHelloButtonClick" text="Sauvegarder perspective" />
-                    <MenuItem disable="true" onAction="#onHelloButtonClick" text="Charger perspective" />
+                    <MenuItem disable="true" onAction="#save" text="Sauvegarder perspectives" />
+                    <MenuItem disable="true" onAction="#load" text="Charger perspectives" />
                     <MenuItem onAction="#onLoadImageButtonClick" text="Charger image" />
                     <MenuItem onAction="#onQuitButtonClick" text="Quitter" />
                 </items>
             </MenuButton>
             <MenuButton text="Édition">
                 <items>
-                    <MenuItem onAction="#onHelloButtonClick" text="Défaire" />
-                    <MenuItem onAction="#onHelloButtonClick" text="Refaire" />
+                    <MenuItem onAction="#undo" text="Défaire" />
+                    <MenuItem onAction="#redo" text="Refaire" />
                 </items>
             </MenuButton>
             <MenuButton text="Presse-Papier">
@@ -27,8 +27,8 @@
                     <MenuItem onAction="#onHelloButtonClick" text="Coller position" />
                     <MenuItem onAction="#onHelloButtonClick" text="Copier zoom" />
                     <MenuItem onAction="#onHelloButtonClick" text="Coller zoom" />
-                    <MenuItem onAction="#onHelloButtonClick" text="Copier tout" />
-                    <MenuItem onAction="#onHelloButtonClick" text="Coller tout" />
+                    <MenuItem onAction="#copy" text="Copier tout" />
+                    <MenuItem onAction="#paste" text="Coller tout" />
                 </items>
             </MenuButton>
         </HBox>

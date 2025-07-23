@@ -64,6 +64,40 @@ public class Controller extends Observator implements Initializable {
         System.out.println("Button pressed");
     }
 
+    protected void undo() {
+        saveMemento();
+        Undo undo = new Undo(currentState);
+        undo.execute();
+    }
+
+    protected void redo() {
+        saveMemento();
+        Redo redo = new Redo(currentState);
+        redo.execute();
+    }
+
+    protected void save() {
+        Save save = new Save(currentState);
+        save.execute();
+    }
+
+    protected void load() {
+        Load load = new Load(currentState);
+        load.execute();
+    }
+
+    protected void copy() {
+        saveMemento();
+        Copy copy = new Copy(currentState);
+        copy.execute();
+    }
+
+    protected void paste() {
+        saveMemento();
+        Paste paste = new Paste(currentState);
+        paste.execute();
+    }
+
     @FXML
     protected void onLoadImageButtonClick() {
         saveMemento();
@@ -221,15 +255,11 @@ public class Controller extends Observator implements Initializable {
         contextMenu.getItems().addAll(item1, item2);
 
         item1.setOnAction(actionEvent -> {
-            saveMemento();
-            Copy copy = new Copy(currentState);
-            copy.execute();
+            copy();
         });
 
         item2.setOnAction(actionEvent -> {
-            saveMemento();
-            Paste paste = new Paste(currentState);
-            paste.execute();
+            paste();
         });
 
     }
