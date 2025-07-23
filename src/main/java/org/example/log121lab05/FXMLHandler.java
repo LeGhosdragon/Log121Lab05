@@ -2,12 +2,10 @@ package org.example.log121lab05;
 
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
-import javax.sound.sampled.Control;
 import java.awt.*;
 
 public class FXMLHandler
