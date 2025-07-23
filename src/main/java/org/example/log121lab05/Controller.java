@@ -22,11 +22,11 @@ public class Controller extends Observator
 {
     private static Controller c = null;
     private Point[] pasteBoard = new Point[2];
-    private List<Memento> snapshots = new ArrayList<>();
-    private List<Memento> redoshots = new ArrayList<>();
+    private final List<Memento> snapshots = new ArrayList<>();
+    private final List<Memento> redoshots = new ArrayList<>();
     private double clickSceneX;
     private double clickSceneY;
-
+    private State currentState;
     @FXML
     private StackPane pane1;
     @FXML
@@ -43,6 +43,7 @@ public class Controller extends Observator
     public void initialize() {
         pane1.setOnScroll(this::onScroll);
         pane2.setOnScroll(this::onScroll);
+        currentState = new State();
     }
 
     public static synchronized Controller getInstance()
@@ -53,7 +54,7 @@ public class Controller extends Observator
     }
 
     private void saveMemento(){
-        Memento m = new Memento(State.getState());
+        Memento m = new Memento(currentState);
         snapshots.add(m);
     }
 
@@ -77,7 +78,7 @@ public class Controller extends Observator
 
     @FXML
     public void onImage1Pressed(MouseEvent event) {
-        State.getState().setActivePerspectiveIndex(0);
+        currentState.setActivePerspectiveIndex(0);
         clickSceneX = event.getSceneX();
         clickSceneY = event.getSceneY();
     }
@@ -85,7 +86,7 @@ public class Controller extends Observator
 
     @FXML
     protected void onImage2Pressed(MouseEvent event){
-        State.getState().setActivePerspectiveIndex(1);
+        currentState.setActivePerspectiveIndex(1);
         clickSceneX = event.getSceneX();
         clickSceneY = event.getSceneY();
     }
@@ -93,7 +94,7 @@ public class Controller extends Observator
 
     @FXML
     public void onImageDragged(MouseEvent event) {
-        Perspective perspective = State.getState().getActivePerspective();
+        Perspective perspective = currentState.getActivePerspective();
         Point[] bounds = perspective.getParams(); // top-left, bottom-right
         int imageX1 = bounds[0].x;
         int imageY1 = bounds[0].y;
@@ -109,7 +110,7 @@ public class Controller extends Observator
         double deltaX = (event.getSceneX() - clickSceneX) / paneWidth * viewportWidth;
         double deltaY = (event.getSceneY() - clickSceneY) / paneHeight * viewportHeight;
 
-        Translate cmd = new Translate(State.getState(), deltaX, deltaY);
+        Translate cmd = new Translate(currentState, deltaX, deltaY);
         cmd.execute();
 
         // Update click for continuous dragging
@@ -124,7 +125,7 @@ public class Controller extends Observator
 
         double zoomFactor = (e.getDeltaY() > 0) ? 1.05 : 0.95;
 
-        Perspective perspective = State.getState().getActivePerspective();
+        Perspective perspective = currentState.getActivePerspective();
         Point[] bounds = perspective.getParams();
         int imageX1 = bounds[0].x;
         int imageY1 = bounds[0].y;
@@ -166,7 +167,7 @@ public class Controller extends Observator
 
         Point zoomCenter = new Point((int) imageMouseX, (int) imageMouseY);
 
-        Zoom cmd = new Zoom(State.getState(), zoomFactor, zoomCenter);
+        Zoom cmd = new Zoom(currentState, zoomFactor, zoomCenter);
         cmd.execute();
     }
     @Override

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class State implements Serializable
 {
-    private static State currentState = new State();
+
     private int activePerspectiveIndex;
     private ArrayList<Perspective> perspectives = new ArrayList<>();
     private Image image = null;
@@ -23,31 +23,27 @@ public class State implements Serializable
 
     public void setState(State state)
     {
-        for (int i = 0; i < currentState.perspectives.size(); i++)
+        for (int i = 0; i < this.perspectives.size(); i++)
         {
-            currentState.perspectives.get(i).setParams(
+            this.perspectives.get(i).setParams(
                     state.perspectives.get(i).getParams()[0],
                     state.perspectives.get(i).getParams()[1]
             );
         }
-        currentState.image.setImage(state.image.getImage());
+        this.image.setImage(state.image.getImage());
     }
 
-    static public State getState()
-    {
-        return currentState;
-    }
 
     public void setActivePerspectiveIndex(int index) {
-        if (index >= 0 && index < currentState.perspectives.size()) {
-            currentState.activePerspectiveIndex = index;
+        if (index >= 0 && index < this.perspectives.size()) {
+            this.activePerspectiveIndex = index;
         }
     }
     public int getActivePerspectiveIndex() {
-        return  currentState.activePerspectiveIndex;
+        return  this.activePerspectiveIndex;
     }
     public Perspective getActivePerspective() {
-        return currentState.perspectives.get(currentState.activePerspectiveIndex);
+        return this.perspectives.get(this.activePerspectiveIndex);
     }
 
     @Serial
