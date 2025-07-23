@@ -5,6 +5,8 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import org.example.log121lab05.Models.Image;
+import org.example.log121lab05.Models.Perspective;
 
 import java.awt.*;
 
@@ -27,14 +29,14 @@ public class FXMLHandler
         {
             update((Perspective)obs);
         }
-        if(obs.getClass() == Image.class)
+        if(obs.getClass() == org.example.log121lab05.Models.Image.class)
         {
-            update((Image)obs);
+            update((org.example.log121lab05.Models.Image)obs);
         }
     }
     public void update(Perspective obs) {
         Platform.runLater(() -> {
-            javafx.scene.image.Image fxImg = SwingFXUtils.toFXImage(Image.getInstance().getImage(), null);
+            javafx.scene.image.Image fxImg = SwingFXUtils.toFXImage(org.example.log121lab05.Models.Image.getInstance().getImage(), null);
 
             // Get image-space viewport corners
             Point[] bounds = obs.getParams();

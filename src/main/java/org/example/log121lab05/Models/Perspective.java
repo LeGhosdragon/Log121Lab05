@@ -1,4 +1,7 @@
-package org.example.log121lab05;
+package org.example.log121lab05.Models;
+
+import org.example.log121lab05.IObservable;
+import org.example.log121lab05.Observator;
 
 import java.awt.*;
 

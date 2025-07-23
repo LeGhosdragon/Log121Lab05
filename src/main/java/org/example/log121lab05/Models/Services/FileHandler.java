@@ -1,4 +1,6 @@
-package org.example.log121lab05;
+package org.example.log121lab05.Models.Services;
+
+import org.example.log121lab05.Models.State;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

@@ -1,15 +1,14 @@
-package org.example.log121lab05.Commands;
+package org.example.log121lab05.Models.Commands;
 
 import org.example.log121lab05.Controller;
-import org.example.log121lab05.ICommand;
-import org.example.log121lab05.State;
+import org.example.log121lab05.Models.State;
 
-public class Undo implements ICommand
+public class Redo implements ICommand
 {
 
     private State state = null;
 
-    public Undo(State state)
+    public Redo(State state)
     {
         this.state = state;
     }
@@ -17,7 +16,7 @@ public class Undo implements ICommand
     @Override
     public void execute()
     {
-        State newState = Controller.getInstance().getPreviousState();
+        State newState = Controller.getInstance().getNextState();
         if(newState != null)
         {
             state.setState(newState);

@@ -1,9 +1,8 @@
-package org.example.log121lab05.Commands;
+package org.example.log121lab05.Models.Commands;
 
 import org.example.log121lab05.Controller;
-import org.example.log121lab05.ICommand;
-import org.example.log121lab05.Perspective;
-import org.example.log121lab05.State;
+import org.example.log121lab05.Models.Perspective;
+import org.example.log121lab05.Models.State;
 
 public class Copy implements ICommand
 {

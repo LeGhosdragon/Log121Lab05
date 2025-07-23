@@ -1,7 +1,8 @@
-package org.example.log121lab05;
+package org.example.log121lab05.Models;
+
+import org.example.log121lab05.Controller;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 

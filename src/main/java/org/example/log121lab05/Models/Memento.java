@@ -1,4 +1,4 @@
-package org.example.log121lab05;
+package org.example.log121lab05.Models;
 
 public class Memento
 {
