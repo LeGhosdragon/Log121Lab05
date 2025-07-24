@@ -45,7 +45,7 @@ public class Controller implements IObserver, Initializable {
 
     private Perspective pasteBoard;
     private CopyStrategy copyStrategy;
-    
+
     private double clickSceneX;
     private double clickSceneY;
 

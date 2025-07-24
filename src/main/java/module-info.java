@@ -1,4 +1,4 @@
-module com.example.labo5carry {
+module com.example.log121Lab05 {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.swing;
