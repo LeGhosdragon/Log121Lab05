@@ -11,8 +11,8 @@
                 <items>
                     <MenuItem disable="true" onAction="#save" text="Sauvegarder perspectives" />
                     <MenuItem disable="true" onAction="#load" text="Charger perspectives" />
-                    <MenuItem onAction="#onLoadImageButtonClick" text="Charger image" />
-                    <MenuItem onAction="#onQuitButtonClick" text="Quitter" />
+                    <MenuItem onAction="#loadImage" text="Charger image" />
+                    <MenuItem onAction="#quit" text="Quitter" />
                 </items>
             </MenuButton>
             <MenuButton text="Édition">
@@ -36,22 +36,22 @@
     <center>
         <HBox spacing="10" style="-fx-background-color: #e6e6e6; -fx-padding: 10;">
             <StackPane maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" prefHeight="600" prefWidth="413" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
-                <ImageView fx:id="imageView1" fitHeight="600" fitWidth="413" preserveRatio="true" smooth="true" />
+                <ImageView fx:id="imageView1" fitHeight="600" fitWidth="413" preserveRatio="true"/>
             </StackPane>
-            <StackPane fx:id="pane1" maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" onContextMenuRequested="#contextMenu" onMousePressed="#onImage1Pressed" prefHeight="600" prefWidth="413" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
-                <ImageView fx:id="imageView2" fitHeight="600" fitWidth="413" onMouseDragged="#onImageDragged" onMousePressed="#onImage1Pressed" preserveRatio="true" smooth="true">
+            <StackPane fx:id="pane1" maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" onContextMenuRequested="#contextMenu" onMousePressed="#onPerspective1Clicked" prefHeight="600" prefWidth="413" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
+                <ImageView fx:id="imageView2" fitHeight="600" fitWidth="413" onMouseDragged="#onImageDragged" onMousePressed="#onPerspective1Clicked" preserveRatio="true">
 
                 </ImageView>
             </StackPane>
             <StackPane fx:id="pane2" maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" prefHeight="600" prefWidth="413" onContextMenuRequested="#contextMenu" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
-                <ImageView fx:id="imageView3" fitHeight="600" fitWidth="413" onMouseDragged="#onImageDragged" onMousePressed="#onImage2Pressed"  preserveRatio="true" smooth="true" />
+                <ImageView fx:id="imageView3" fitHeight="600" fitWidth="413" onMouseDragged="#onImageDragged" onMousePressed="#onPerspective2Clicked"  preserveRatio="true"/>
             </StackPane>
 
         </HBox>
     </center>
     <bottom>
         <HBox style="-fx-alignment: center; -fx-padding: 5;">
-            <javafx.scene.control.Label text="LOG121 - E25 - LAB5" />
+            <Label text="LOG121 - E25 - LAB5" />
         </HBox>
     </bottom>
 </BorderPane>
