@@ -3,6 +3,7 @@ package com.example.log121Lab05;
 import com.example.log121Lab05.Models.Commands.*;
 import com.example.log121Lab05.Models.Memento;
 import com.example.log121Lab05.Models.Perspective;
+import com.example.log121Lab05.Models.Services.FileService;
 import com.example.log121Lab05.Models.State;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -150,13 +151,13 @@ public class Controller implements IObserver, Initializable {
 
     @FXML
     public void save(ActionEvent actionEvent) {
-
-
-
+        FileService.writeSave(state);
     }
 
     @FXML
     public void load(ActionEvent actionEvent) {
+        LoadSave cmd = new LoadSave(state);
+        cmd.execute();
     }
 
     @FXML

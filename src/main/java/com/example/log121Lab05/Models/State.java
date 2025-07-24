@@ -2,14 +2,20 @@ package com.example.log121Lab05.Models;
 
 import com.example.log121Lab05.Observable;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Observer;
 
-public class State extends Observable {
+public class State extends Observable implements Serializable {
 
     private Perspective perspective1;
     private Perspective perspective2;
-    private BufferedImage image;
+    private transient BufferedImage image;
 
     public State() {
         perspective1 = new Perspective(1);
@@ -55,6 +61,13 @@ public class State extends Observable {
         notifyObservers(image);
     }
 
+    public void setState(State state) {
+        this.perspective1 = new Perspective(state.perspective1);
+        this.perspective2 = new Perspective(state.perspective2);
+        this.image = state.image;
+        notifyObservers(state);
+    }
+
     public void translatePerspective(Perspective perspective, double deltaX, double deltaY) {
         perspective.translate(deltaX, deltaY, image.getWidth(), image.getHeight());
         notifyObservers(perspective);
@@ -84,6 +97,16 @@ public class State extends Observable {
         }
 
         notifyObservers(target);
+    }
+
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        ImageIO.write(image, "png", oos);
+    }
+
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        this.image = ImageIO.read(ois);
     }
 
 }

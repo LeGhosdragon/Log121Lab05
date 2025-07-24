@@ -9,8 +9,8 @@
         <HBox spacing="10" style="-fx-padding: 5; -fx-background-color: #f0f0f0;">
             <MenuButton text="Fichier">
                 <items>
-                    <MenuItem disable="true" onAction="#save" text="Sauvegarder perspectives" />
-                    <MenuItem disable="true" onAction="#load" text="Charger perspectives" />
+                    <MenuItem onAction="#save" text="Sauvegarder perspectives" />
+                    <MenuItem onAction="#load" text="Charger perspectives" />
                     <MenuItem onAction="#loadImage" text="Charger image" />
                     <MenuItem onAction="#quit" text="Quitter" />
                 </items>

@@ -1,8 +1,9 @@
 package com.example.log121Lab05.Models;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Perspective {
+public class Perspective implements Serializable {
 
     private Point pointUL = new Point(0,0);
     private Point pointDR = new Point(512,512);
