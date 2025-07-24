@@ -1,6 +1,4 @@
-package com.example.labo5carry.Models;
-
-import com.example.labo5carry.Controller;
+package com.example.log121Lab05.Models;
 
 import java.awt.*;
 

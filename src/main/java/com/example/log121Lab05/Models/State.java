@@ -1,6 +1,6 @@
-package com.example.labo5carry.Models;
+package com.example.log121Lab05.Models;
 
-import com.example.labo5carry.Observable;
+import com.example.log121Lab05.Observable;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -1,7 +1,7 @@
-package com.example.labo5carry.Models.Commands;
+package com.example.log121Lab05.Models.Commands;
 
-import com.example.labo5carry.Controller;
-import com.example.labo5carry.Models.State;
+import com.example.log121Lab05.Controller;
+import com.example.log121Lab05.Models.State;
 
 public class Translate implements ICommand {
     private double deltaX;

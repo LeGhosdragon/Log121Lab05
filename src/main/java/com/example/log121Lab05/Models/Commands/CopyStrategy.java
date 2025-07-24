@@ -1,6 +1,6 @@
-package com.example.labo5carry.Models.Commands;
+package com.example.log121Lab05.Models.Commands;
 
-import com.example.labo5carry.Models.Perspective;
+import com.example.log121Lab05.Models.Perspective;
 
 public interface CopyStrategy {
 

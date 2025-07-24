@@ -5,6 +5,6 @@ module com.example.log121Lab05 {
     requires java.desktop;
 
 
-    opens com.example.labo5carry to javafx.fxml;
-    exports com.example.labo5carry;
+    opens com.example.log121Lab05 to javafx.fxml;
+    exports com.example.log121Lab05;
 }

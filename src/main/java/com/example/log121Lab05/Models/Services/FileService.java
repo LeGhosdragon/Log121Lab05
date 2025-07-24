@@ -1,4 +1,4 @@
-package com.example.labo5carry.Models.Services;
+package com.example.log121Lab05.Models.Services;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
