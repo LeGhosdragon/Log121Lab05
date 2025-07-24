@@ -20,14 +20,13 @@ import org.example.log121lab05.Models.State;
 
 import java.awt.*;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class Controller extends Observator implements Initializable {
     private static Controller c = null;
     private Point[] pasteBoard = new Point[2];
-    private final List<Memento> snapshots = new ArrayList<>();
+    private final Stack<Memento> snapshots = new Stack<>();
     private final List<Memento> redoshots = new ArrayList<>();
     private double clickSceneX;
     private double clickSceneY;
@@ -211,8 +210,7 @@ public class Controller extends Observator implements Initializable {
 
     public State getPreviousState() {
         if (!snapshots.isEmpty()) {
-            Memento previousStateMeme = snapshots.get(snapshots.size() - 1);
-            snapshots.remove(snapshots.size() - 1);
+            Memento previousStateMeme = snapshots.pop();
             redoshots.add(previousStateMeme);
             return previousStateMeme.getState();
         }
