@@ -63,35 +63,35 @@ public class Controller extends Observator implements Initializable {
     protected void onHelloButtonClick() {
         System.out.println("Button pressed");
     }
-
+    @FXML
     protected void undo() {
         saveMemento();
         Undo undo = new Undo(currentState);
         undo.execute();
     }
-
+    @FXML
     protected void redo() {
         saveMemento();
         Redo redo = new Redo(currentState);
         redo.execute();
     }
-
+    @FXML
     protected void save() {
         Save save = new Save(currentState);
         save.execute();
     }
-
+    @FXML
     protected void load() {
         Load load = new Load(currentState);
         load.execute();
     }
-
+    @FXML
     protected void copy() {
         saveMemento();
         Copy copy = new Copy(currentState);
         copy.execute();
     }
-
+    @FXML
     protected void paste() {
         saveMemento();
         Paste paste = new Paste(currentState);
