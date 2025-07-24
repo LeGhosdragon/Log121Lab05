@@ -8,6 +8,7 @@ public class Perspective {
 
     private Point pointUL = new Point(0,0);
     private Point pointDR = new Point(512,512);
+    private Point position = new  Point(256,256);
     private double zoomLevel = 1.0;
     private int viewIndex;
 
@@ -72,6 +73,12 @@ public class Perspective {
             newULy = imgHeight - viewportHeight;
         }
 
+        // get the coordinates of the middle of the image
+        int posX = pointUL.x + imgWidth/2;
+        int posY = pointUL.y + imgHeight/2;
+
+        position = new Point(posX, posY);
+
         pointUL = new Point(newULx, newULy);
         pointDR = new Point(newDRx, newDRy);
     }
@@ -85,17 +92,11 @@ public class Perspective {
         return viewIndex;
     }
 
-    public void setPerspective(Perspective perspective){
-        this.pointUL = perspective.pointUL;
-        this.pointDR = perspective.pointDR;
-        this.zoomLevel = perspective.zoomLevel;
-        this.viewIndex = perspective.viewIndex;
+    public double getZoomLevel() {
+        return zoomLevel;
     }
 
-    public void setParams(Point pUL, Point pDR)
-    {
-        pointUL = pUL;
-        pointDR = pDR;
+    public Point getPosition() {
+        return position;
     }
-
 }

@@ -14,8 +14,9 @@ public class Paste implements ICommand{
 
     @Override
     public void execute() {
-        Perspective selected = Controller.getInstance().getSelectedPerspective();
-        state.pastePerspective(selected, Controller.getInstance().getPasteBoard());
+        Perspective target = Controller.getInstance().getSelectedPerspective();
+        Perspective pasted = Controller.getInstance().getPasteBoard();
+        state.pastePerspective(target, pasted);
     }
 
     @Override

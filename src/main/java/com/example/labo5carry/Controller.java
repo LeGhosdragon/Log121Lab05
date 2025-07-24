@@ -42,7 +42,10 @@ public class Controller implements IObserver, Initializable {
     private Stack<Memento> history = new Stack<>();
     private ICommand lastCmd = null;
     private Perspective selectedPerspective;
-    private Point[] pasteBoard = new Point[2];
+
+    private Perspective pasteBoard;
+    private CopyStrategy copyStrategy;
+    
     private double clickSceneX;
     private double clickSceneY;
 
@@ -86,7 +89,6 @@ public class Controller implements IObserver, Initializable {
 
     @FXML
     protected void onPerspective1Clicked(MouseEvent event) {
-        System.out.println("Perspective1 clicked");
         selectedPerspective = state.getPerspective1();
         clickSceneX = event.getSceneX();
         clickSceneY = event.getSceneY();
@@ -94,7 +96,6 @@ public class Controller implements IObserver, Initializable {
 
     @FXML
     protected void onPerspective2Clicked(MouseEvent event) {
-        System.out.println("Perspective2 clicked");
         selectedPerspective = state.getPerspective2();
         clickSceneX = event.getSceneX();
         clickSceneY = event.getSceneY();
@@ -117,16 +118,34 @@ public class Controller implements IObserver, Initializable {
         }
     }
 
-    @FXML
-    public void copy(ActionEvent actionEvent) {
-        System.out.println("READY FOR PASTA");
-        Copy copy = new Copy(state);
+
+    public void copy() {
+        Copy copy = new Copy(state, copyStrategy);
         copy.execute();
     }
 
     @FXML
-    public void paste(ActionEvent actionEvent) {
-        System.out.println("PASTE");
+    public void copyAll() {
+        copyStrategy = new CopyAllStrategy();
+        copy();
+    }
+
+    @FXML
+    public void copyPosition() {
+        // set the copy strategy
+        copyStrategy = new CopyPositionStrategy();
+        copy();
+    }
+
+    @FXML
+    public void copyZoom() {
+        copyStrategy = new CopyZoomStrategy();
+        copy();
+    }
+
+
+    @FXML
+    public void paste() {
         history.add(state.createMemento());
         Paste paste = new Paste(state);
         paste.execute();
@@ -134,6 +153,9 @@ public class Controller implements IObserver, Initializable {
 
     @FXML
     public void save(ActionEvent actionEvent) {
+
+
+
     }
 
     @FXML
@@ -142,9 +164,12 @@ public class Controller implements IObserver, Initializable {
 
     @FXML
     public void quit(ActionEvent actionEvent) {
+        Platform.exit();
     }
 
-    public void contextMenu(ContextMenuEvent mouseEvent) {}
+    public void contextMenu(ContextMenuEvent mouseEvent) {
+        // TODO spawn contextual menu
+    }
 
     @FXML
     protected void onHelloButtonClick() {
@@ -314,12 +339,11 @@ public class Controller implements IObserver, Initializable {
         return instance;
     }
 
-    public Point[] getPasteBoard() {
-        return pasteBoard;
-    }
-
-    public void setPasteBoard(Point[] p) {
+    public void setPasteBoard(Perspective p) {
         pasteBoard = p;
+    }
+    public Perspective getPasteBoard() {
+        return pasteBoard;
     }
 
 }

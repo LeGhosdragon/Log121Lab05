@@ -23,12 +23,10 @@
             </MenuButton>
             <MenuButton text="Presse-Papier">
                 <items>
-                    <MenuItem onAction="#onHelloButtonClick" text="Copier position" />
-                    <MenuItem onAction="#onHelloButtonClick" text="Coller position" />
-                    <MenuItem onAction="#onHelloButtonClick" text="Copier zoom" />
-                    <MenuItem onAction="#onHelloButtonClick" text="Coller zoom" />
-                    <MenuItem onAction="#copy" text="Copier tout" />
-                    <MenuItem onAction="#paste" text="Coller tout" />
+                    <MenuItem onAction="#copyPosition" text="Copier position" />
+                    <MenuItem onAction="#copyZoom" text="Copier zoom" />
+                    <MenuItem onAction="#copyAll" text="Copier tout" />
+                    <MenuItem onAction="#paste" text="Coller" />
                 </items>
             </MenuButton>
         </HBox>

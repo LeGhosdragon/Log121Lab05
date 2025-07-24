@@ -65,9 +65,25 @@ public class State extends Observable {
         notifyObservers(perspective);
     }
 
-    public void pastePerspective(Perspective perspective, Point[] pasteBoard) {
-        perspective.setParams(pasteBoard[0], pasteBoard[1]);
-        notifyObservers(perspective);
+    public void pastePerspective(Perspective target, Perspective pasteBoard) {
+
+        Point targetPosition = target.getPosition();
+        Point pastePosition = pasteBoard.getPosition();
+        double targetZoomLevel = target.getZoomLevel();
+        double pasteZoomLevel = pasteBoard.getZoomLevel();
+
+        if (targetZoomLevel != pasteZoomLevel) {
+            // if zoom level is different
+            target.zoom(pasteZoomLevel, targetPosition);
+        }
+
+        if (!targetPosition.equals(pastePosition)) {
+            int deltaX = targetPosition.x - pastePosition.x;
+            int deltaY = targetPosition.y - pastePosition.y;
+            target.translate(deltaX, deltaY, image.getWidth(), image.getHeight());
+        }
+
+        notifyObservers(target);
     }
 
 }
