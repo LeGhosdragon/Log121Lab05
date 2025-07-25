@@ -151,7 +151,8 @@ public class Controller implements IObserver, Initializable {
 
     @FXML
     public void save(ActionEvent actionEvent) {
-        FileService.writeSave(state);
+        Save cmd = new Save(state);
+        cmd.execute();
     }
 
     @FXML
