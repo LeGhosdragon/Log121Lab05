@@ -36,12 +36,12 @@
             <StackPane maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" prefHeight="600" prefWidth="413" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
                 <ImageView fx:id="imageView1" fitHeight="600" fitWidth="413" preserveRatio="true"/>
             </StackPane>
-            <StackPane fx:id="pane1" maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" onContextMenuRequested="#contextMenu" onMousePressed="#onPerspective1Clicked" prefHeight="600" prefWidth="413" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
+            <StackPane fx:id="pane1" maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" onMousePressed="#onPerspective1Clicked" prefHeight="600" prefWidth="413" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
                 <ImageView fx:id="imageView2" fitHeight="600" fitWidth="413" onMouseDragged="#onImageDragged" onMousePressed="#onPerspective1Clicked" preserveRatio="true">
 
                 </ImageView>
             </StackPane>
-            <StackPane fx:id="pane2" maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" prefHeight="600" prefWidth="413" onContextMenuRequested="#contextMenu" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
+            <StackPane fx:id="pane2" maxHeight="600" maxWidth="413" minHeight="600" minWidth="413" prefHeight="600" prefWidth="413" style="-fx-border-color: blue; -fx-border-width: 2; -fx-background-color: rgba(0,0,0,0.05);">
                 <ImageView fx:id="imageView3" fitHeight="600" fitWidth="413" onMouseDragged="#onImageDragged" onMousePressed="#onPerspective2Clicked"  preserveRatio="true"/>
             </StackPane>
 

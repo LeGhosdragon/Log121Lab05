@@ -117,7 +117,6 @@ public class Controller implements IObserver, Initializable {
         }
     }
 
-
     public void copy() {
         Copy copy = new Copy(state, copyStrategy);
         copy.execute();
@@ -142,7 +141,6 @@ public class Controller implements IObserver, Initializable {
         copy();
     }
 
-
     @FXML
     public void paste() {
         history.add(state.createMemento());
@@ -151,24 +149,20 @@ public class Controller implements IObserver, Initializable {
     }
 
     @FXML
-    public void save(ActionEvent actionEvent) {
+    public void save() {
         Save cmd = new Save(state);
         cmd.execute();
     }
 
     @FXML
-    public void load(ActionEvent actionEvent) {
+    public void load() {
         LoadSave cmd = new LoadSave(state);
         cmd.execute();
     }
 
     @FXML
-    public void quit(ActionEvent actionEvent) {
+    public void quit() {
         Platform.exit();
-    }
-
-    public void contextMenu(ContextMenuEvent mouseEvent) {
-        // TODO spawn contextual menu
     }
 
     @FXML
@@ -342,6 +336,7 @@ public class Controller implements IObserver, Initializable {
     public void setPasteBoard(Perspective p) {
         pasteBoard = p;
     }
+
     public Perspective getPasteBoard() {
         return pasteBoard;
     }
