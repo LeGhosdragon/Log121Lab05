@@ -111,6 +111,7 @@ public class Controller implements IObserver, Initializable {
     protected void redo() {
         if (lastCmd != null) {
             history.add(state.createMemento());
+            // do we really need setState?
             lastCmd.setState(state);
             lastCmd.execute();
         }

@@ -80,21 +80,7 @@ public class State extends Observable implements Serializable {
 
     public void pastePerspective(Perspective target, Perspective pasteBoard) {
 
-        Point targetPosition = target.getPosition();
-        Point pastePosition = pasteBoard.getPosition();
-        double targetZoomLevel = target.getZoomLevel();
-        double pasteZoomLevel = pasteBoard.getZoomLevel();
-
-        if (targetZoomLevel != pasteZoomLevel) {
-            // if zoom level is different
-            target.zoom(pasteZoomLevel, targetPosition);
-        }
-
-        if (!targetPosition.equals(pastePosition)) {
-            int deltaX = targetPosition.x - pastePosition.x;
-            int deltaY = targetPosition.y - pastePosition.y;
-            target.translate(deltaX, deltaY, image.getWidth(), image.getHeight());
-        }
+        // TODO partial paste
 
         notifyObservers(target);
     }

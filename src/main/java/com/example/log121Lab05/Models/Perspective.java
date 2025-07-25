@@ -7,7 +7,6 @@ public class Perspective implements Serializable {
 
     private Point pointUL = new Point(0,0);
     private Point pointDR = new Point(512,512);
-    private Point position = new  Point(256,256);
     private double zoomLevel = 1.0;
     private int viewIndex;
 
@@ -76,7 +75,7 @@ public class Perspective implements Serializable {
         int posX = pointUL.x + imgWidth/2;
         int posY = pointUL.y + imgHeight/2;
 
-        position = new Point(posX, posY);
+
 
         pointUL = new Point(newULx, newULy);
         pointDR = new Point(newDRx, newDRy);
@@ -93,9 +92,5 @@ public class Perspective implements Serializable {
 
     public double getZoomLevel() {
         return zoomLevel;
-    }
-
-    public Point getPosition() {
-        return position;
     }
 }

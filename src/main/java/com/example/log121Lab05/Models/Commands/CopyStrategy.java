@@ -4,6 +4,6 @@ import com.example.log121Lab05.Models.Perspective;
 
 public interface CopyStrategy {
 
-    public Perspective copy(Perspective selectedPerspective);
+    Perspective copy(Perspective selectedPerspective);
 
 }
