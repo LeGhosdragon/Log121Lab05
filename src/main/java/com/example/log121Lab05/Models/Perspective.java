@@ -1,12 +1,10 @@
-package org.example.log121lab05.Models;
-
-import org.example.log121lab05.IObservable;
-import org.example.log121lab05.Observator;
+package com.example.log121Lab05.Models;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Perspective implements IObservable
-{
+public class Perspective implements Serializable {
+
     private Point pointUL = new Point(0,0);
     private Point pointDR = new Point(512,512);
     private double zoomLevel = 1.0;
@@ -16,6 +14,14 @@ public class Perspective implements IObservable
     {
         viewIndex = index;
     }
+
+    public Perspective(Perspective perspective) {
+        this.pointUL = perspective.pointUL;
+        this.pointDR = perspective.pointDR;
+        this.zoomLevel = perspective.zoomLevel;
+        this.viewIndex = perspective.viewIndex;
+    }
+
 
     public void zoom(double zoomFactor, Point zoomCenter) {
         zoomLevel = zoomLevel * zoomFactor;
@@ -37,30 +43,13 @@ public class Perspective implements IObservable
 
         pointUL = new Point(newULx, newULy);
         pointDR = new Point(newDRx, newDRy);
-
-        notifyObservators();
     }
 
-
-    public double getZoomLevel() {
-        return zoomLevel;
-    }
-
-
-    public int getViewIndex()
-    {
-        return viewIndex;
-    }
-
-    public void translate(double deltaX, double deltaY) {
+    public void translate(double deltaX, double deltaY, int imgWidth, int imgHeight) {
         int newULx = pointUL.x - (int) deltaX;
         int newULy = pointUL.y - (int) deltaY;
         int newDRx = pointDR.x - (int) deltaX;
         int newDRy = pointDR.y - (int) deltaY;
-
-        int imgWidth = Image.getInstance().getImageWidth();
-        int imgHeight = Image.getInstance().getImageHeight();
-
 
         int viewportWidth = pointDR.x - pointUL.x;
         int viewportHeight = pointDR.y - pointUL.y;
@@ -82,27 +71,14 @@ public class Perspective implements IObservable
             newULy = imgHeight - viewportHeight;
         }
 
+        // get the coordinates of the middle of the image
+        int posX = pointUL.x + imgWidth/2;
+        int posY = pointUL.y + imgHeight/2;
+
+
+
         pointUL = new Point(newULx, newULy);
         pointDR = new Point(newDRx, newDRy);
-
-        notifyObservators();
-    }
-
-    public Point[] copie()
-    {
-        return getParams();
-    }
-
-    public void paste(Point[] pasteBoard)
-    {
-        setParams(pasteBoard[0],pasteBoard[1]);
-    }
-
-    public void setParams(Point pUL, Point pDR)
-    {
-        pointUL = pUL;
-        pointDR = pDR;
-        notifyObservators();
     }
 
     public Point[] getParams()
@@ -110,24 +86,11 @@ public class Perspective implements IObservable
         return new Point[]{pointUL, pointDR};
     }
 
-    @Override
-    public void addObservator(Observator obs)
-    {
-        Observators.add(obs);
+    public int getViewIndex(){
+        return viewIndex;
     }
 
-    @Override
-    public void removeObservator(Observator obs)
-    {
-        Observators.remove(obs);
-    }
-
-
-    private void notifyObservators()
-    {
-        for (Observator obs: Observators)
-        {
-            obs.update(this);
-        }
+    public double getZoomLevel() {
+        return zoomLevel;
     }
 }
