@@ -404,7 +404,7 @@
 											"top": 823,
 											"width": 199.0751953125,
 											"height": 13,
-											"text": "+Operation7()",
+											"text": "+copy()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -421,7 +421,7 @@
 											"top": 838,
 											"width": 199.0751953125,
 											"height": 13,
-											"text": "+Operation8()",
+											"text": "+copyAll()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -438,7 +438,7 @@
 											"top": 853,
 											"width": 199.0751953125,
 											"height": 13,
-											"text": "+Operation9()",
+											"text": "+copyPosition()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -455,7 +455,7 @@
 											"top": 868,
 											"width": 199.0751953125,
 											"height": 13,
-											"text": "+Operation10()",
+											"text": "+copyZoom()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -472,7 +472,7 @@
 											"top": 883,
 											"width": 199.0751953125,
 											"height": 13,
-											"text": "+Operation11()",
+											"text": "+paste()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -489,7 +489,7 @@
 											"top": 898,
 											"width": 199.0751953125,
 											"height": 13,
-											"text": "+Operation12()",
+											"text": "+save()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -506,7 +506,7 @@
 											"top": 913,
 											"width": 199.0751953125,
 											"height": 13,
-											"text": "+Operation13()",
+											"text": "+load()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -523,7 +523,7 @@
 											"top": 928,
 											"width": 199.0751953125,
 											"height": 13,
-											"text": "+Operation14()",
+											"text": "+quit()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -12554,7 +12554,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGYQdXZ6u8oOu8="
 							},
-							"name": "Operation7"
+							"name": "copy"
 						},
 						{
 							"_type": "UMLOperation",
@@ -12562,7 +12562,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGYQdXZ6u8oOu8="
 							},
-							"name": "Operation8"
+							"name": "copyAll"
 						},
 						{
 							"_type": "UMLOperation",
@@ -12570,7 +12570,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGYQdXZ6u8oOu8="
 							},
-							"name": "Operation9"
+							"name": "copyPosition"
 						},
 						{
 							"_type": "UMLOperation",
@@ -12578,7 +12578,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGYQdXZ6u8oOu8="
 							},
-							"name": "Operation10"
+							"name": "copyZoom"
 						},
 						{
 							"_type": "UMLOperation",
@@ -12586,7 +12586,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGYQdXZ6u8oOu8="
 							},
-							"name": "Operation11"
+							"name": "paste"
 						},
 						{
 							"_type": "UMLOperation",
@@ -12594,7 +12594,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGYQdXZ6u8oOu8="
 							},
-							"name": "Operation12"
+							"name": "save"
 						},
 						{
 							"_type": "UMLOperation",
@@ -12602,7 +12602,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGYQdXZ6u8oOu8="
 							},
-							"name": "Operation13"
+							"name": "load"
 						},
 						{
 							"_type": "UMLOperation",
@@ -12610,7 +12610,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGYQdXZ6u8oOu8="
 							},
-							"name": "Operation14"
+							"name": "quit"
 						},
 						{
 							"_type": "UMLOperation",

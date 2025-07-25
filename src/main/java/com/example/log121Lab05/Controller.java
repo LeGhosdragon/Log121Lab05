@@ -165,11 +165,6 @@ public class Controller implements IObserver, Initializable {
         Platform.exit();
     }
 
-    @FXML
-    protected void onHelloButtonClick() {
-        System.out.println("FEATURE NOT IMPLEMENTED YET");
-    }
-
     private void onScroll(ScrollEvent e) {
 
         double zoomFactor = (e.getDeltaY() > 0) ? 1.05 : 0.95;
