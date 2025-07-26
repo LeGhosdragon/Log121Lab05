@@ -50,7 +50,7 @@ public class Controller implements IObserver, Initializable {
     private Controller(){}
 
     @FXML
-    protected void loadImage() {
+    public void loadImage() {
 
         LoadImage loadImage = new LoadImage(state);
         loadImage.execute();
@@ -58,7 +58,7 @@ public class Controller implements IObserver, Initializable {
     }
 
     @FXML
-    protected void onImageDragged(MouseEvent event) {
+    public void onImageDragged(MouseEvent event) {
         Point[] bounds = selectedPerspective.getParams(); // top-left, bottom-right
         int imageX1 = bounds[0].x;
         int imageY1 = bounds[0].y;
@@ -86,21 +86,21 @@ public class Controller implements IObserver, Initializable {
     }
 
     @FXML
-    protected void onPerspective1Clicked(MouseEvent event) {
+    public void onPerspective1Clicked(MouseEvent event) {
         selectedPerspective = state.getPerspective1();
         clickSceneX = event.getSceneX();
         clickSceneY = event.getSceneY();
     }
 
     @FXML
-    protected void onPerspective2Clicked(MouseEvent event) {
+    public void onPerspective2Clicked(MouseEvent event) {
         selectedPerspective = state.getPerspective2();
         clickSceneX = event.getSceneX();
         clickSceneY = event.getSceneY();
     }
 
     @FXML
-    protected void undo() {
+    public void undo() {
         if (!history.isEmpty()) {
             Undo undo = new Undo(state, history.pop());
             undo.execute();
@@ -108,7 +108,7 @@ public class Controller implements IObserver, Initializable {
     }
 
     @FXML
-    protected void redo() {
+    public void redo() {
         if (lastCmd != null) {
             history.add(state.createMemento());
             // do we really need setState?
@@ -117,7 +117,7 @@ public class Controller implements IObserver, Initializable {
         }
     }
 
-    public void copy() {
+    private void copy() {
         Copy copy = new Copy(state, copyStrategy);
         copy.execute();
     }
@@ -165,7 +165,7 @@ public class Controller implements IObserver, Initializable {
         Platform.exit();
     }
 
-    private void onScroll(ScrollEvent e) {
+    public void onScroll(ScrollEvent e) {
 
         double zoomFactor = (e.getDeltaY() > 0) ? 1.05 : 0.95;
 
@@ -266,7 +266,7 @@ public class Controller implements IObserver, Initializable {
         pane2.setOnScroll(this::onScroll);
     }
 
-    public void update(Perspective p) {
+    private void update(Perspective p) {
         Platform.runLater(() -> {
             Image fxImg = SwingFXUtils.toFXImage(state.getImage(), null);
 
