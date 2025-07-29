@@ -82,16 +82,10 @@ public class State extends Observable implements Serializable {
     public void pastePerspective(Perspective target, Perspective pasteBoard, PasteType type) {
         switch(type){
             case ZOOM:
-                System.out.println("target zoom : " + target.getZoomLevel());
-                System.out.println("pasteBoards zoom : " + pasteBoard.getZoomLevel());
-
                 double zoomLevel = target.getZoomLevel();
                 zoomLevel = 1.0 / zoomLevel;
                 zoomLevel *= pasteBoard.getZoomLevel();
                 target.zoom(zoomLevel, target.getPointUL());
-
-                System.out.println("new zoom : " + zoomLevel);
-                System.out.println("new target zoom : " + target.getZoomLevel());
                 break;
 
             case POSITION:
