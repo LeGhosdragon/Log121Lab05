@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
@@ -32,6 +33,8 @@ public class Controller implements IObserver, Initializable {
     public ImageView imageView3; // perspective 2
     public StackPane pane1;// perp1 pane
     public StackPane pane2; // perp2 pane
+    public MenuItem savePerspectiveBtn;
+    public MenuItem loadPerspectiveBtn;
 
     private static Controller instance;
 
@@ -51,10 +54,10 @@ public class Controller implements IObserver, Initializable {
 
     @FXML
     public void loadImage() {
-
         LoadImage loadImage = new LoadImage(state);
         loadImage.execute();
-
+        loadPerspectiveBtn.setDisable(false);
+        savePerspectiveBtn.setDisable(false);
     }
 
     @FXML
