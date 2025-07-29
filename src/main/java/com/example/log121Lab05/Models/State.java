@@ -1,5 +1,6 @@
 package com.example.log121Lab05.Models;
 
+import com.example.log121Lab05.Models.Commands.PasteType;
 import com.example.log121Lab05.Observable;
 
 import javax.imageio.ImageIO;
@@ -78,9 +79,38 @@ public class State extends Observable implements Serializable {
         notifyObservers(perspective);
     }
 
-    public void pastePerspective(Perspective target, Perspective pasteBoard) {
+    public void pastePerspective(Perspective target, Perspective pasteBoard, PasteType type) {
+        switch(type){
+            case ZOOM:
+                System.out.println("target zoom : " + target.getZoomLevel());
+                System.out.println("pasteBoards zoom : " + pasteBoard.getZoomLevel());
 
-        // TODO partial paste
+                double zoomLevel = target.getZoomLevel();
+                zoomLevel = 1.0 / zoomLevel;
+                zoomLevel *= pasteBoard.getZoomLevel();
+                target.zoom(zoomLevel, target.getPointUL());
+
+                System.out.println("new zoom : " + zoomLevel);
+                System.out.println("new target zoom : " + target.getZoomLevel());
+                break;
+
+            case POSITION:
+                Point dr = target.getPointDR();
+                Point ul = target.getPointUL();
+                Point delta = new Point(dr.x - ul.x, dr.y - ul.y);
+
+                Point newUL = pasteBoard.getPointUL();
+                Point newDR = new Point(newUL.x + delta.x, newUL.y + delta.y);
+
+                target.setPointUL(newUL);
+                target.setPointDR(newDR);
+                break;
+
+            case ALL:
+                target.setPointDR(pasteBoard.getPointDR());
+                target.setPointUL(pasteBoard.getPointUL());
+                break;
+        }
 
         notifyObservers(target);
     }

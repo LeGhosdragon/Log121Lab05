@@ -7,17 +7,15 @@ import com.example.log121Lab05.Models.State;
 public class Copy implements ICommand {
 
     State state;
-    CopyStrategy copyStrategy;
 
-    public Copy(State state, CopyStrategy copyStrategy) {
+    public Copy(State state) {
         this.state = state;
-        this.copyStrategy = copyStrategy;
     }
 
     @Override
     public void execute() {
         Controller c = Controller.getInstance();
-        Perspective p = copyStrategy.copy(c.getSelectedPerspective());
+        Perspective p = c.getSelectedPerspective();
         c.setPasteBoard(p);
     }
 

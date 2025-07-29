@@ -45,7 +45,6 @@ public class Controller implements IObserver, Initializable {
     private Perspective selectedPerspective;
 
     private Perspective pasteBoard;
-    private CopyStrategy copyStrategy;
 
     private double clickSceneX;
     private double clickSceneY;
@@ -120,34 +119,30 @@ public class Controller implements IObserver, Initializable {
         }
     }
 
-    private void copy() {
-        Copy copy = new Copy(state, copyStrategy);
+    @FXML
+    public void copy() {
+        Copy copy = new Copy(state);
         copy.execute();
     }
 
     @FXML
-    public void copyAll() {
-        copyStrategy = new CopyAllStrategy();
-        copy();
-    }
-
-    @FXML
-    public void copyPosition() {
-        // set the copy strategy
-        copyStrategy = new CopyPositionStrategy();
-        copy();
-    }
-
-    @FXML
-    public void copyZoom() {
-        copyStrategy = new CopyZoomStrategy();
-        copy();
-    }
-
-    @FXML
-    public void paste() {
+    public void pastePosition() {
         history.add(state.createMemento());
-        Paste paste = new Paste(state);
+        Paste paste = new Paste(state, PasteType.POSITION);
+        paste.execute();
+    }
+
+    @FXML
+    public void pasteZoom() {
+        history.add(state.createMemento());
+        Paste paste = new Paste(state, PasteType.ZOOM);
+        paste.execute();
+    }
+
+    @FXML
+    public void pasteAll() {
+        history.add(state.createMemento());
+        Paste paste = new Paste(state, PasteType.ALL);
         paste.execute();
     }
 

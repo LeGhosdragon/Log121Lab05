@@ -86,6 +86,22 @@ public class Perspective implements Serializable {
         return new Point[]{pointUL, pointDR};
     }
 
+    public Point getPointDR() {
+        return pointDR;
+    }
+
+    public Point getPointUL() {
+        return pointUL;
+    }
+
+    public void setPointDR(Point pointDR) {
+        this.pointDR = pointDR;
+    }
+
+    public void setPointUL(Point pointUL) {
+        this.pointUL = pointUL;
+    }
+
     public int getViewIndex(){
         return viewIndex;
     }
