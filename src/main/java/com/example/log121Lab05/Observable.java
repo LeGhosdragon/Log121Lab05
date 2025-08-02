@@ -14,14 +14,23 @@ public abstract class Observable
 {
     private ArrayList<IObserver> observers =  new ArrayList<>();
 
+    /**
+     * @param obs
+     */
     protected void addObserver(IObserver obs) {
         observers.add(obs);
     }
 
+    /**
+     * @param obs
+     */
     protected void removeObserver(IObserver obs) {
         observers.remove(obs);
     }
 
+    /**
+     * @param arg
+     */
     protected void notifyObservers(Object arg) {
         for (IObserver obs : observers) {
             obs.update(this, arg);

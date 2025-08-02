@@ -59,6 +59,9 @@ public class Controller implements IObserver, Initializable {
 
     private Controller(){}
 
+    /**
+     *
+     */
     @FXML
     public void loadImage() {
         LoadImage loadImage = new LoadImage(state);
@@ -67,6 +70,9 @@ public class Controller implements IObserver, Initializable {
         savePerspectiveBtn.setDisable(false);
     }
 
+    /**
+     * @param event
+     */
     @FXML
     public void onImageDragged(MouseEvent event) {
         Point[] bounds = selectedPerspective.getParams(); // top-left, bottom-right
@@ -95,6 +101,9 @@ public class Controller implements IObserver, Initializable {
         clickSceneY = event.getSceneY();
     }
 
+    /**
+     * @param event
+     */
     @FXML
     public void onPerspective1Clicked(MouseEvent event) {
         selectedPerspective = state.getPerspective1();
@@ -102,6 +111,9 @@ public class Controller implements IObserver, Initializable {
         clickSceneY = event.getSceneY();
     }
 
+    /**
+     * @param event
+     */
     @FXML
     public void onPerspective2Clicked(MouseEvent event) {
         selectedPerspective = state.getPerspective2();
@@ -109,6 +121,9 @@ public class Controller implements IObserver, Initializable {
         clickSceneY = event.getSceneY();
     }
 
+    /**
+     *
+     */
     @FXML
     public void undo() {
         if (!history.isEmpty()) {
@@ -117,6 +132,9 @@ public class Controller implements IObserver, Initializable {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     public void redo() {
         if (lastCmd != null) {
@@ -127,12 +145,18 @@ public class Controller implements IObserver, Initializable {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     public void copy() {
         Copy copy = new Copy(state);
         copy.execute();
     }
 
+    /**
+     *
+     */
     @FXML
     public void pastePosition() {
         history.add(state.createMemento());
@@ -140,6 +164,9 @@ public class Controller implements IObserver, Initializable {
         paste.execute();
     }
 
+    /**
+     *
+     */
     @FXML
     public void pasteZoom() {
         history.add(state.createMemento());
@@ -147,6 +174,9 @@ public class Controller implements IObserver, Initializable {
         paste.execute();
     }
 
+    /**
+     *
+     */
     @FXML
     public void pasteAll() {
         history.add(state.createMemento());
@@ -154,23 +184,35 @@ public class Controller implements IObserver, Initializable {
         paste.execute();
     }
 
+    /**
+     *
+     */
     @FXML
     public void save() {
         Save cmd = new Save(state);
         cmd.execute();
     }
 
+    /**
+     *
+     */
     @FXML
     public void load() {
         LoadSave cmd = new LoadSave(state);
         cmd.execute();
     }
 
+    /**
+     *
+     */
     @FXML
     public void quit() {
         Platform.exit();
     }
 
+    /**
+     * @param e
+     */
     public void onScroll(ScrollEvent e) {
 
         double zoomFactor = (e.getDeltaY() > 0) ? 1.05 : 0.95;
@@ -227,6 +269,10 @@ public class Controller implements IObserver, Initializable {
         lastCmd = cmd;
     }
 
+    /**
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         // update UI HERE
@@ -258,6 +304,10 @@ public class Controller implements IObserver, Initializable {
 
     }
 
+    /**
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         state = new State();
@@ -272,6 +322,9 @@ public class Controller implements IObserver, Initializable {
         pane2.setOnScroll(this::onScroll);
     }
 
+    /**
+     * @param p
+     */
     private void update(Perspective p) {
         Platform.runLater(() -> {
             Image fxImg = SwingFXUtils.toFXImage(state.getImage(), null);
@@ -323,10 +376,16 @@ public class Controller implements IObserver, Initializable {
         });
     }
 
+    /**
+     * @return
+     */
     public Perspective getSelectedPerspective() {
         return selectedPerspective;
     }
 
+    /**
+     * @return
+     */
     public static Controller getInstance() {
         if (instance == null) {
             instance = new Controller();

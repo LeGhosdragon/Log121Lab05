@@ -23,6 +23,9 @@ public class LoadImage implements ICommand {
         this.state = state;
     }
 
+    /**
+     *
+     */
     @Override
     public void execute() {
         JFileChooser chooser = new JFileChooser();

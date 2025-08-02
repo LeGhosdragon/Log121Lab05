@@ -37,10 +37,16 @@ public class State extends Observable implements Serializable {
         this.image = state.image;
     }
 
+    /**
+     * @return
+     */
     public Memento createMemento() {
         return new Memento(this);
     }
 
+    /**
+     * @param m
+     */
     public void loadMemento(Memento m) {
         System.out.println("RESTORE");
         State state = m.getState();
@@ -70,6 +76,9 @@ public class State extends Observable implements Serializable {
         notifyObservers(image);
     }
 
+    /**
+     * @param state
+     */
     public void setState(State state) {
         this.perspective1 = new Perspective(state.perspective1);
         this.perspective2 = new Perspective(state.perspective2);
@@ -77,16 +86,31 @@ public class State extends Observable implements Serializable {
         notifyObservers(state);
     }
 
+    /**
+     * @param perspective
+     * @param deltaX
+     * @param deltaY
+     */
     public void translatePerspective(Perspective perspective, double deltaX, double deltaY) {
         perspective.translate(deltaX, deltaY, image.getWidth(), image.getHeight());
         notifyObservers(perspective);
     }
 
+    /**
+     * @param perspective
+     * @param zoomFactor
+     * @param zoomCenter
+     */
     public void zoomPerspective(Perspective perspective, double zoomFactor, Point zoomCenter) {
         perspective.zoom(zoomFactor, zoomCenter);
         notifyObservers(perspective);
     }
 
+    /**
+     * @param target
+     * @param pasteBoard
+     * @param type
+     */
     public void pastePerspective(Perspective target, Perspective pasteBoard, PasteType type) {
         switch(type){
             case ZOOM:
@@ -117,11 +141,20 @@ public class State extends Observable implements Serializable {
         notifyObservers(target);
     }
 
+    /**
+     * @param oos
+     * @throws IOException
+     */
     private void writeObject(ObjectOutputStream oos) throws IOException {
         oos.defaultWriteObject();
         ImageIO.write(image, "png", oos);
     }
 
+    /**
+     * @param ois
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         ois.defaultReadObject();
         this.image = ImageIO.read(ois);

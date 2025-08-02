@@ -22,6 +22,9 @@ public class Translate implements ICommand {
         this.deltaY = deltaY;
     }
 
+    /**
+     *
+     */
     @Override
     public void execute() {
         Controller controller = Controller.getInstance();

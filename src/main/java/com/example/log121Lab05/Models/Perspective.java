@@ -31,6 +31,10 @@ public class Perspective implements Serializable {
     }
 
 
+    /**
+     * @param zoomFactor
+     * @param zoomCenter
+     */
     public void zoom(double zoomFactor, Point zoomCenter) {
         zoomLevel = zoomLevel * zoomFactor;
 
@@ -53,6 +57,12 @@ public class Perspective implements Serializable {
         pointDR = new Point(newDRx, newDRy);
     }
 
+    /**
+     * @param deltaX
+     * @param deltaY
+     * @param imgWidth
+     * @param imgHeight
+     */
     public void translate(double deltaX, double deltaY, int imgWidth, int imgHeight) {
         int newULx = pointUL.x - (int) deltaX;
         int newULy = pointUL.y - (int) deltaY;

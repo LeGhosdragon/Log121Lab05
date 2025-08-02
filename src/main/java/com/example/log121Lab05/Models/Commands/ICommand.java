@@ -13,5 +13,9 @@ import com.example.log121Lab05.Models.State;
 public interface ICommand {
 
     void execute();
+
+    /**
+     * @param state
+     */
     void setState(State state);
 }

@@ -21,6 +21,9 @@ public class Copy implements ICommand {
         this.state = state;
     }
 
+    /**
+     *
+     */
     @Override
     public void execute() {
         Controller c = Controller.getInstance();

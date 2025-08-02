@@ -23,6 +23,9 @@ public class Paste implements ICommand{
         this.type = type;
     }
 
+    /**
+     *
+     */
     @Override
     public void execute() {
         Perspective target = Controller.getInstance().getSelectedPerspective();

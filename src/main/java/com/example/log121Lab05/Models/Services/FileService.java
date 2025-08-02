@@ -18,6 +18,10 @@ import java.util.Date;
 
 public class FileService {
 
+    /**
+     * @param file
+     * @return
+     */
     public static BufferedImage readImageFile(File file) {
         try {
             BufferedImage img = ImageIO.read(file);
@@ -33,6 +37,9 @@ public class FileService {
         return null;
     }
 
+    /**
+     * @param state
+     */
     public static void writeSave(State state) {
         try {
             File dir = new File("tmp/test");
@@ -51,6 +58,10 @@ public class FileService {
 
     }
 
+    /**
+     * @param file
+     * @return
+     */
     public static State loadSave(File file) {
         try {
             FileInputStream fis = new FileInputStream(file.getPath());

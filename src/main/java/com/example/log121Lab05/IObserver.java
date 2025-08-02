@@ -10,5 +10,9 @@ package com.example.log121Lab05;
 
 public interface IObserver
 {
+    /**
+     * @param obs
+     * @param arg
+     */
     void update(Observable obs, Object arg);
 }

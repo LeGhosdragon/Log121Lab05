@@ -27,6 +27,9 @@ public class Zoom implements ICommand {
     }
 
 
+    /**
+     *
+     */
     @Override
     public void execute() {
         Perspective perspective = Controller.getInstance().getSelectedPerspective();
