@@ -4,7 +4,6 @@ import com.example.log121Lab05.Controller;
 import com.example.log121Lab05.Models.Perspective;
 import com.example.log121Lab05.Models.State;
 
-;
 
 public class Paste implements ICommand{
 
