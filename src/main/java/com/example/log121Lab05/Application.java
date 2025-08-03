@@ -1,10 +1,16 @@
 /*
- * @Author: mikey.zhaopeng
- * @Email:  admin@example.com
- * @Date:   2016-07-29 15:57:29
- * @Last Modified by: Noscere
- * @Last Modified time: 2022-11-15 06:25:53.546
- * @Description: description
+ * @Author: Yvon Meunier, Aymerik Blais, Simon Boudreau
+ * @Date:   2025-07-21 20:00:00
+ * @Last Modified by: Yvon Meunier
+ * @Last Modified time: 2025-08-02 20:00:00
+ * @Description: This application is a simple image "editor" were you can zoom and translate the desired image in 2 different viewports.
+ * You can also go back if desired, save the project on the disk, load a save/project file and even copy-paste some elements of one perspective onto another!
+ * The goal of this project is to learn how to work as a team, how to use collaboration tools such as GitHub,use the Model-View-Controller architecture, and implement various design patterns such as :
+ *  - Observer
+ *  - Memento
+ *  - Command
+ *  - Singleton
+ *  - Mediator
  */
 package com.example.log121Lab05;
 
@@ -14,6 +20,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * App entry point
+ */
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {

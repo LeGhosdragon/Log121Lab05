@@ -1,16 +1,17 @@
 /*
- * @Author: mikey.zhaopeng
- * @Email:  admin@example.com
- * @Date:   2016-07-29 15:57:29
- * @Last Modified by: Noscere
- * @Last Modified time: 2022-11-15 06:25:53.546
- * @Description: description
+ * @Author: Yvon Meunier, Aymerik Blais, Simon Boudreau
+ * @Date:   2025-07-21 20:00:00
+ * @Last Modified by: Yvon Meunier
+ * @Last Modified time: 2025-08-02 20:00:00
  */
 package com.example.log121Lab05.Models;
 
 import java.awt.*;
 import java.io.Serializable;
 
+/**
+ * Perspective is a class that represents a perspective/viewport from our view with its respective methods and variables.
+ */
 public class Perspective implements Serializable {
 
     private Point pointUL = new Point(0,0);
@@ -32,6 +33,7 @@ public class Perspective implements Serializable {
 
 
     /**
+     * Zooms on the image by a factor on a specific point, which is usually where your mouse is when scrolling.
      * @param zoomFactor
      * @param zoomCenter
      */
@@ -58,6 +60,7 @@ public class Perspective implements Serializable {
     }
 
     /**
+     * Translates the image inside the perspective by a certain amount
      * @param deltaX
      * @param deltaY
      * @param imgWidth

@@ -1,10 +1,8 @@
 /*
- * @Author: mikey.zhaopeng
- * @Email:  admin@example.com
- * @Date:   2016-07-29 15:57:29
- * @Last Modified by: Noscere
- * @Last Modified time: 2022-11-15 06:25:53.546
- * @Description: description
+ * @Author: Yvon Meunier, Aymerik Blais, Simon Boudreau
+ * @Date:   2025-07-21 20:00:00
+ * @Last Modified by: Yvon Meunier
+ * @Last Modified time: 2025-08-02 20:00:00
  */
 package com.example.log121Lab05.Models.Commands;
 
@@ -15,6 +13,9 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * LoadSave is a Concrete Command which implements the ICommand interface. Its purpose is to load a save file and restore its data
+ */
 public class LoadSave implements ICommand {
 
     private State state;
@@ -24,7 +25,7 @@ public class LoadSave implements ICommand {
     }
 
     /**
-     *
+     * Opens a JFileChooser dialog where the user selects a save file. It then sets the State's values to the respective values found in the save file
      */
     @Override
     public void execute() {

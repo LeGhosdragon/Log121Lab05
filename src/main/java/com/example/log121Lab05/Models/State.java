@@ -1,10 +1,8 @@
 /*
- * @Author: mikey.zhaopeng
- * @Email:  admin@example.com
- * @Date:   2016-07-29 15:57:29
- * @Last Modified by: Noscere
- * @Last Modified time: 2022-11-15 06:25:53.546
- * @Description: description
+ * @Author: Yvon Meunier, Aymerik Blais, Simon Boudreau
+ * @Date:   2025-07-21 20:00:00
+ * @Last Modified by: Yvon Meunier
+ * @Last Modified time: 2025-08-02 20:00:00
  */
 package com.example.log121Lab05.Models;
 
@@ -20,6 +18,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Observer;
 
+/**
+ * State is a class which holds all the data representing the state of our application such as the current image and the state of the perspectives like the zoom or the translations
+ */
 public class State extends Observable implements Serializable {
 
     private Perspective perspective1;
@@ -38,6 +39,7 @@ public class State extends Observable implements Serializable {
     }
 
     /**
+     * Creates a backup which can be loaded
      * @return
      */
     public Memento createMemento() {
@@ -45,6 +47,7 @@ public class State extends Observable implements Serializable {
     }
 
     /**
+     * Loads the backup
      * @param m
      */
     public void loadMemento(Memento m) {
@@ -77,7 +80,8 @@ public class State extends Observable implements Serializable {
     }
 
     /**
-     * @param state
+     * Sets all the parameters of this instance to what is currently passed as a parameter. This is done typically when loading a save file
+     * @param state the desired state
      */
     public void setState(State state) {
         this.perspective1 = new Perspective(state.perspective1);
@@ -87,6 +91,7 @@ public class State extends Observable implements Serializable {
     }
 
     /**
+     * Asks the perspective to translate the image inside it by a certain amount in a certain direction
      * @param perspective
      * @param deltaX
      * @param deltaY
@@ -97,6 +102,7 @@ public class State extends Observable implements Serializable {
     }
 
     /**
+     * Asks the perspective to zoom on the image at a certain point, typically the mouse cursor location
      * @param perspective
      * @param zoomFactor
      * @param zoomCenter
@@ -107,6 +113,7 @@ public class State extends Observable implements Serializable {
     }
 
     /**
+     * Asks the perspective to paste onto itself the pasteBoard values
      * @param target
      * @param pasteBoard
      * @param type
@@ -142,6 +149,7 @@ public class State extends Observable implements Serializable {
     }
 
     /**
+     * Serializes this instance and specifies how to handle the BufferedImage
      * @param oos
      * @throws IOException
      */
@@ -151,6 +159,7 @@ public class State extends Observable implements Serializable {
     }
 
     /**
+     * Deserializes the given object and specifies how to read the BufferedImage
      * @param ois
      * @throws IOException
      * @throws ClassNotFoundException

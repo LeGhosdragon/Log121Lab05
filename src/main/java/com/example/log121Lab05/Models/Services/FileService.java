@@ -1,10 +1,8 @@
 /*
- * @Author: mikey.zhaopeng
- * @Email:  admin@example.com
- * @Date:   2016-07-29 15:57:29
- * @Last Modified by: Noscere
- * @Last Modified time: 2022-11-15 06:25:53.546
- * @Description: description
+ * @Author: Yvon Meunier, Aymerik Blais, Simon Boudreau
+ * @Date:   2025-07-21 20:00:00
+ * @Last Modified by: Yvon Meunier
+ * @Last Modified time: 2025-08-02 20:00:00
  */
 package com.example.log121Lab05.Models.Services;
 
@@ -16,11 +14,15 @@ import java.io.*;
 import java.text.DateFormat;
 import java.util.Date;
 
+/**
+ * FileService is a class which acts as a wrapper on top of the File API. Its purpose is to simply read and write files
+ */
 public class FileService {
 
     /**
-     * @param file
-     * @return
+     * Reads the data of the image file on the disk and extracts the BufferedImage from it
+     * @param file the image file
+     * @return The image
      */
     public static BufferedImage readImageFile(File file) {
         try {
@@ -38,7 +40,8 @@ public class FileService {
     }
 
     /**
-     * @param state
+     * Serializes the current state and creates a save file
+     * @param state the current state
      */
     public static void writeSave(State state) {
         try {
@@ -59,8 +62,9 @@ public class FileService {
     }
 
     /**
-     * @param file
-     * @return
+     * Loads the State from the save file by deserializing the data
+     * @param file the save file
+     * @return the state
      */
     public static State loadSave(File file) {
         try {
